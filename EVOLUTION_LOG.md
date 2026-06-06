@@ -134,3 +134,14 @@
   - `scripts/export-submission-package.sh` and `make export-package` for clean tracked-source archive export
   - `.github/workflows/ci.yml`, `scripts/ci-quick-check.sh`, and `make ci` for a portable GitHub Actions quick gate
 - Kept CSPR.trade MCP non-blocking: the smoke script exits cleanly when no local MCP bridge is configured and becomes a real `get_tokens` check when a bridge module is provided.
+
+## 2026-06-07 - Checkpoint 06 Manus CI Review
+
+- Checkpoint 06 was delivered through the Manus desktop UI to the correct `Casper Hackathon Development Workflow Guide` thread after confirming Manus had previously been focused on an unrelated thread.
+- Manus approved the CI automation addendum.
+- Manus confirmed `make ci` and GitHub Actions satisfy the remaining public-repo technical readiness gap without requiring live secrets.
+- Manus recommended keeping Checkpoint 06 as an independent record rather than folding it back into Phase 5.
+- Manus explicitly advised against adding more local gates; remaining work is external public-submission material:
+  - GitHub remote URL and push
+  - funded Casper Testnet key material and live deploy hash
+  - public demo video URL
