@@ -82,3 +82,16 @@
   - `git diff --check`: passed.
 - Manus UI is available again, but the final send action is waiting for the user-required Computer Use confirmation for representational communication.
 - No Manus approval is claimed for Checkpoint 03 until the outbox is actually sent and feedback is saved.
+
+## 2026-06-06 - Checkpoint 03 Manus Review
+
+- Checkpoint 03 was delivered through the Manus desktop UI after user confirmation.
+- Manus approved Phase 3.
+- Manus confirmed mock mode satisfies the agent-core milestone while Testnet key material is pending.
+- Manus directed Phase 4 to prioritize x402 paid evidence service and client flow.
+- Manus recommended keeping CSPR.trade MCP as an optional smoke/enrichment module after the x402 core is complete.
+- Next phase is Phase 4 x402 micro-payment integration:
+  - `oracle-server/` paid RWA risk-score endpoint.
+  - `agent-backend/src/x402-client.ts`.
+  - Agent loop integration for borderline confidence cases.
+  - Fresh logs showing `PAYMENT_REQUIRED -> PAYMENT_SIGNED -> DATA_RECEIVED`.
