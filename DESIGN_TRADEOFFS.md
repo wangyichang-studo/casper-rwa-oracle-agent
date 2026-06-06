@@ -146,3 +146,22 @@ Tradeoff:
 Mitigation:
 
 - `docs/phase-2-deployment.md` lists the exact build command and build tools.
+
+## Mock Agent Publishing Before Live Testnet Keys
+
+Decision: Phase 3 defaults the TypeScript agent to mock publishing with full unsigned Casper deploy JSON.
+
+Why:
+
+- Manus approved agent development while Testnet key material is pending.
+- The agent loop can be tested and demoed without exposing or inventing private key material.
+- Mock transaction hashes make the terminal workflow visible while clearly avoiding false live-chain claims.
+
+Tradeoff:
+
+- Phase 3 does not yet create live Casper transactions from TypeScript.
+
+Mitigation:
+
+- Phase 2 already provides an Odra livenet deploy/register/publish runner for the first live chain workflow.
+- The TypeScript publisher has live-mode guardrails and will only progress after local `.env`, key path, funded account, and contract package hash exist.

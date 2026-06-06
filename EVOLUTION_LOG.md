@@ -55,3 +55,19 @@
 - Manus approved moving into Phase 3 Agent core while Testnet key material remains pending.
 - Manus confirmed the single-command deploy/register/publish runner satisfies the qualification need for a transaction-generating on-chain component.
 - Manus advised keeping `pause_oracle` as tested README/code functionality, not a demo-video transaction, so the demo can focus on data collection, AI assessment, and on-chain publishing.
+
+## 2026-06-06 - Phase 3 Agent Core Ready For Manus
+
+- Implemented `agent-backend/` TypeScript agent core.
+- Agent loop now loads synthetic RWA data, hashes evidence metadata, assesses risk/confidence, and prepares mock Casper `publish_data` deploy JSON.
+- Mock mode emits transaction-like hashes for demo flow while live Testnet keys remain pending.
+- Verified `npm test` with 8 tests, `npm run build`, and `npm run agent:mock`.
+- Checkpoint 03 is ready for Manus review.
+
+## 2026-06-06 - Checkpoint 03 Manus Delivery Blocked
+
+- `manus_outbox/checkpoint-03-submit.md` is prepared and copied-ready.
+- Manus desktop app could not expose a window: Computer Use returned `cgWindowNotFound`, and AppleScript repeatedly reported `count of windows = 0`.
+- Tried app activation, Cmd+N, quit/reopen, and direct activation without restoring a window.
+- No Manus approval is claimed for Checkpoint 03.
+- Resume by sending the existing outbox when Manus UI recovers.

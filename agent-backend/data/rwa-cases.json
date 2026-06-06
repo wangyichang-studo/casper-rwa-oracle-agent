@@ -1,0 +1,53 @@
+[
+  {
+    "assetId": "rwa-demo-invoice-001",
+    "source": "synthetic-invoice-risk-feed",
+    "sourceKind": "invoice",
+    "rawValue": 1250000,
+    "unit": "USD_CENTS",
+    "expectedMin": 1000000,
+    "expectedMax": 1500000,
+    "reliability": 0.95,
+    "volatilityBps": 180,
+    "stalenessMinutes": 5,
+    "evidence": {
+      "provider": "local-synthetic",
+      "reference": "invoice-risk-score-v1",
+      "paid": false
+    }
+  },
+  {
+    "assetId": "rwa-demo-tbill-13w",
+    "source": "synthetic-treasury-rate-feed",
+    "sourceKind": "treasury",
+    "rawValue": 515,
+    "unit": "BPS",
+    "expectedMin": 300,
+    "expectedMax": 650,
+    "reliability": 0.9,
+    "volatilityBps": 40,
+    "stalenessMinutes": 10,
+    "evidence": {
+      "provider": "local-synthetic",
+      "reference": "treasury-yield-snapshot-v1",
+      "paid": false
+    }
+  },
+  {
+    "assetId": "rwa-demo-warehouse-lease-009",
+    "source": "synthetic-lease-index-feed",
+    "sourceKind": "lease",
+    "rawValue": 9800000,
+    "unit": "USD_CENTS",
+    "expectedMin": 2500000,
+    "expectedMax": 7500000,
+    "reliability": 0.62,
+    "volatilityBps": 900,
+    "stalenessMinutes": 180,
+    "evidence": {
+      "provider": "local-synthetic",
+      "reference": "warehouse-lease-review-v1",
+      "paid": false
+    }
+  }
+]

@@ -33,7 +33,7 @@ flowchart LR
 
 - `contracts/`: Odra smart contract workspace planned for oracle registry, data feed, and reputation modules
   - `contracts/rwa-oracle/`: Phase 1 Odra contract crate and unit tests
-- `agent-backend/`: TypeScript oracle agent planned for RWA data evaluation and transaction submission
+- `agent-backend/`: TypeScript oracle agent for RWA data evaluation, evidence hashing, and mock/live transaction publishing
 - `oracle-server/`: x402 evidence oracle planned for paid RWA risk and market evidence
 - `docs/`: official rules, implementation guide, resources, and demo planning
 - `checkpoints/`: Codex checkpoint reports for Manus review
@@ -69,3 +69,15 @@ cargo run --bin deploy --features livenet
 ```
 
 The deploy runner reads local Odra livenet variables from `.env`, deploys `RwaOracle`, registers the signing account as the demo oracle, publishes one sample RWA datapoint, and prints the contract package hash plus sample output. Real `.env` and key files must stay local and uncommitted.
+
+## Phase 3 Agent Core
+
+```bash
+cd agent-backend
+npm install
+npm test
+npm run build
+npm run agent:mock
+```
+
+Mock mode logs the full perception → evidence → decision → publish path and emits mock transaction hashes plus unsigned Casper `publish_data` deploy JSON.

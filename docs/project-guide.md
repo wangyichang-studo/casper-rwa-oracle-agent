@@ -75,6 +75,7 @@ flowchart TD
 - Evaluate risk/confidence rules and request evidence.
 - Produce explainable decisions.
 - Submit oracle data and reputation workflows using local key material only.
+- Default to mock mode while Testnet key material is pending; logs must show perception, evidence hashing, decision, and transaction hash/unsigned deploy output.
 
 ### Phase 4: x402 Evidence Service
 
