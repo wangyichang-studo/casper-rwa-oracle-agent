@@ -6,6 +6,7 @@ import { loadSyntheticRwaCases } from "./data-collector.js";
 import { createLogger } from "./logger.js";
 import { assessBatch } from "./risk-assessor.js";
 import { publishAssessedData } from "./chain-publisher.js";
+import { enrichWithPremiumEvidence, shouldRequestPremiumEvidence } from "./x402-client.js";
 import type { AgentConfig, AgentLoopResult, Logger } from "./types.js";
 
 export async function runAgentOnce(
@@ -26,15 +27,30 @@ export async function runAgentOnce(
     assets: rawPoints.map((point) => point.assetId),
   });
 
-  const assessed = assessBatch(rawPoints, { publishThreshold: config.publishThreshold });
+  const initialAssessments = assessBatch(rawPoints, { publishThreshold: config.publishThreshold });
+  const assessed = [];
   const published = [];
   const skipped = [];
 
-  for (const point of assessed) {
+  for (const initialPoint of initialAssessments) {
+    let point = initialPoint;
+    if (shouldRequestPremiumEvidence(point, config.x402)) {
+      try {
+        point = await enrichWithPremiumEvidence(point, config.x402, logger);
+      } catch (error) {
+        logger.event("X402", "ERROR", {
+          assetId: point.assetId,
+          message: error instanceof Error ? error.message : String(error),
+        });
+      }
+    }
+    assessed.push(point);
+
     logger.event("EVIDENCE", "HASHED", {
       assetId: point.assetId,
       source: point.raw.source,
       evidenceHash: point.evidenceHash,
+      premiumEvidenceHash: point.premiumEvidence?.evidenceHash,
     });
     logger.event("DECISION", point.decision.toUpperCase(), {
       assetId: point.assetId,

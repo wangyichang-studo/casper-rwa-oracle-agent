@@ -37,16 +37,33 @@
     "assetId": "rwa-demo-warehouse-lease-009",
     "source": "synthetic-lease-index-feed",
     "sourceKind": "lease",
-    "rawValue": 9800000,
+    "rawValue": 7800000,
     "unit": "USD_CENTS",
     "expectedMin": 2500000,
     "expectedMax": 7500000,
-    "reliability": 0.62,
-    "volatilityBps": 900,
-    "stalenessMinutes": 180,
+    "reliability": 0.86,
+    "volatilityBps": 480,
+    "stalenessMinutes": 30,
     "evidence": {
       "provider": "local-synthetic",
       "reference": "warehouse-lease-review-v1",
+      "paid": false
+    }
+  },
+  {
+    "assetId": "rwa-demo-gold-bars-404",
+    "source": "synthetic-commodity-risk-feed",
+    "sourceKind": "commodity",
+    "rawValue": 7000,
+    "unit": "USD_CENTS_PER_OZ",
+    "expectedMin": 170000,
+    "expectedMax": 250000,
+    "reliability": 0.55,
+    "volatilityBps": 1400,
+    "stalenessMinutes": 240,
+    "evidence": {
+      "provider": "local-synthetic",
+      "reference": "gold-custody-anomaly-v1",
       "paid": false
     }
   }

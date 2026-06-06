@@ -19,11 +19,13 @@ required_paths=(
   "agent-backend/src/logger.ts"
   "agent-backend/src/risk-assessor.ts"
   "agent-backend/src/types.ts"
+  "agent-backend/src/x402-client.ts"
   "agent-backend/data/rwa-cases.json"
   "agent-backend/test/agent.test.ts"
   "agent-backend/test/evidence.test.ts"
   "agent-backend/test/logger.test.ts"
   "agent-backend/test/risk-assessor.test.ts"
+  "agent-backend/test/x402-client.test.ts"
   "contracts/rwa-oracle/Cargo.toml"
   "contracts/rwa-oracle/Cargo.lock"
   "contracts/rwa-oracle/Odra.toml"
@@ -35,16 +37,25 @@ required_paths=(
   "contracts/rwa-oracle/src/bin/deploy.rs"
   "contracts/rwa-oracle/src/bin/rwa_oracle_build_contract.rs"
   "oracle-server/.gitkeep"
+  "oracle-server/package.json"
+  "oracle-server/.env.example"
+  "oracle-server/README.md"
+  "oracle-server/src/server.js"
+  "oracle-server/src/x402.js"
+  "oracle-server/test/server.test.js"
   "docs/official-rules.md"
   "docs/project-guide.md"
   "docs/resources.md"
   "docs/demo-video-outline.md"
   "docs/phase-2-deployment.md"
   "docs/phase-3-agent.md"
+  "docs/phase-4-x402.md"
   "checkpoints/checkpoint-00-phase-0-scaffold.md"
   "checkpoints/checkpoint-03-phase-3-agent.md"
+  "checkpoints/checkpoint-04-phase-4-x402.md"
   "manus_outbox/checkpoint-00-submit.md"
   "manus_outbox/checkpoint-03-submit.md"
+  "manus_outbox/checkpoint-04-submit.md"
   "manus_feedback/feedback_log.md"
   "manus_feedback/Manus 反馈 — Checkpoint 00.md"
   "scripts/verify-phase0.sh"
@@ -85,6 +96,8 @@ rg -q 'DataFeed' docs/project-guide.md DESIGN_TRADEOFFS.md
 rg -q 'ReputationScore' docs/project-guide.md DESIGN_TRADEOFFS.md
 rg -q 'Working prototype deployed on Casper Testnet' docs/official-rules.md
 rg -q 'x402' docs/resources.md skills/casper-buildathon-rwa-loop/SKILL.md
+rg -q 'PAYMENT-REQUIRED' docs/phase-4-x402.md oracle-server/README.md
+rg -q 'PAYMENT_SIGNED' docs/phase-4-x402.md checkpoints/checkpoint-04-phase-4-x402.md
 rg -q 'Manus' checkpoints/checkpoint-00-phase-0-scaffold.md manus_outbox/checkpoint-00-submit.md
 
 echo "Scaffold verification passed: ${#required_paths[@]} required paths present, no secret-like files, no placeholders."

@@ -37,11 +37,13 @@ It supports the `exact` scheme on:
 The protocol flow is:
 
 1. Client requests a paid resource.
-2. Server returns `402 Payment Required` and `PaymentRequirements`.
-3. Client signs `PaymentPayload` and retries with `PAYMENT-SIGNATURE`.
-4. Server forwards payload to facilitator.
+2. Server returns `402 Payment Required`, a Base64 JSON `PAYMENT-REQUIRED` header, and payment requirements.
+3. Client signs `PaymentPayload` and retries with Base64 JSON `PAYMENT-SIGNATURE`.
+4. Server forwards payload to CSPR.cloud `/verify` and `/settle` when live facilitator access is configured.
 5. Facilitator verifies and settles on-chain.
-6. Server returns protected data.
+6. Server returns protected data and Base64 JSON `PAYMENT-RESPONSE`.
+
+Phase 4 uses the x402 v2 shape from CSPR.cloud and x402.org docs. The live facilitator path is prepared but remains blocked until local CSPR.cloud authorization and real Casper EIP-712 signing material are available.
 
 ## CSPR.trade MCP
 
@@ -63,4 +65,3 @@ Relevant topics:
 - Access control
 - Build/deploy/read state
 - Upgrading contracts
-

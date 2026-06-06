@@ -15,7 +15,7 @@ The project will build an autonomous oracle agent that gathers synthetic off-cha
 
 ## Current Phase
 
-Phase 2 has passed Manus review. The Odra contract crate includes `RwaOracle`, covering oracle registration, data publication, evidence hashes, latest/history reads, reputation updates, owner-controlled slashing, and owner-controlled oracle pause. A livenet deployment runner is prepared for Casper Testnet and is waiting on local Testnet key material. Phase 3 begins the TypeScript agent core in mock mode while live deployment materials are pending.
+Phase 3 has passed Manus review. Phase 4 adds the x402 paid evidence flow in mock/reference mode while live CSPR.cloud facilitator credentials, real Casper EIP-712 payment signing material, and Testnet publish keys remain pending.
 
 ## Planned Architecture
 
@@ -35,6 +35,7 @@ flowchart LR
   - `contracts/rwa-oracle/`: Phase 1 Odra contract crate and unit tests
 - `agent-backend/`: TypeScript oracle agent for RWA data evaluation, evidence hashing, and mock/live transaction publishing
 - `oracle-server/`: x402 evidence oracle planned for paid RWA risk and market evidence
+  - `oracle-server/`: Phase 4 HTTP 402 paid RWA risk-score endpoint
 - `docs/`: official rules, implementation guide, resources, and demo planning
 - `checkpoints/`: Codex checkpoint reports for Manus review
 - `manus_outbox/`: exact messages prepared for Manus submission
@@ -81,3 +82,33 @@ npm run agent:mock
 ```
 
 Mock mode logs the full perception → evidence → decision → publish path and emits mock transaction hashes plus unsigned Casper `publish_data` deploy JSON.
+
+## Phase 4 x402 Evidence Flow
+
+See `docs/phase-4-x402.md`.
+
+Default mock/reference flow:
+
+```bash
+cd agent-backend
+npm test
+npm run build
+npm run agent:mock
+```
+
+Local HTTP x402 flow:
+
+```bash
+cd oracle-server
+npm test
+npm start
+```
+
+Then in another shell:
+
+```bash
+cd agent-backend
+X402_ORACLE_BASE_URL=http://127.0.0.1:3002 npm run agent:mock
+```
+
+The agent receives a `402 Payment Required` challenge, signs a mock/reference `PAYMENT-SIGNATURE`, receives premium evidence, and upgrades the borderline lease case to a publish decision.

@@ -165,3 +165,24 @@ Mitigation:
 
 - Phase 2 already provides an Odra livenet deploy/register/publish runner for the first live chain workflow.
 - The TypeScript publisher has live-mode guardrails and will only progress after local `.env`, key path, funded account, and contract package hash exist.
+
+## Mock-First x402 Before Live Facilitator Credentials
+
+Decision: Phase 4 implements x402 v2 in mock/reference mode first, with the same `PAYMENT-REQUIRED`, `PAYMENT-SIGNATURE`, and `PAYMENT-RESPONSE` header flow used by the official protocol.
+
+Why:
+
+- Manus approved prioritizing x402 over deeper TypeScript live publishing.
+- Local mock mode gives a reliable demo without requiring private payment credentials.
+- The HTTP `oracle-server` still exercises the real 402 challenge and retry control flow.
+
+Tradeoff:
+
+- The mock payment payload is structurally useful but is not a real Casper EIP-712 authorization.
+- Live CSPR.cloud `/verify` and `/settle` are not claimed without a local access token and payment account material.
+
+Mitigation:
+
+- Keep all live credentials outside git.
+- Document the external blockers explicitly.
+- Preserve the protocol field names and facilitator endpoint shape so real signing can replace the mock payload later.
