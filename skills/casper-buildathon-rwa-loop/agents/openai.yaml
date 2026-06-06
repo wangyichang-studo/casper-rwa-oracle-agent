@@ -1,0 +1,4 @@
+display_name: Casper RWA Loop
+short_description: Closed-loop Buildathon workflow for the Casper RWA Compliance Agent.
+default_prompt: Use the Casper RWA loop to continue the current Buildathon phase, verify outputs, and prepare the Manus checkpoint before moving on.
+

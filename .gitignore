@@ -1,0 +1,26 @@
+.DS_Store
+node_modules/
+dist/
+build/
+target/
+.cache/
+coverage/
+
+# Local secrets and deploy keys
+.env
+.env.*
+!.env.example
+keys/
+*.pem
+*.key
+
+# Runtime output
+logs/
+tmp/
+*.log
+
+# Local worktrees and editor state
+.worktrees/
+.idea/
+.vscode/
+
