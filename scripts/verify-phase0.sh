@@ -3,6 +3,7 @@ set -euo pipefail
 
 required_paths=(
   ".gitignore"
+  ".github/workflows/ci.yml"
   "CONTRIBUTING.md"
   "DESIGN_TRADEOFFS.md"
   "EVOLUTION_LOG.md"
@@ -72,6 +73,7 @@ required_paths=(
   "scripts/fill-submission-artifacts.mjs"
   "scripts/check-submission-ready.mjs"
   "scripts/capture-demo-evidence.sh"
+  "scripts/ci-quick-check.sh"
   "scripts/export-submission-package.sh"
   "scripts/verify-phase0.sh"
   "skills/casper-buildathon-rwa-loop/SKILL.md"
@@ -105,11 +107,13 @@ fi
 
 rg -q 'Casper Innovation Track' docs/official-rules.md
 rg -q '^verify:' Makefile
+rg -q '^ci:' Makefile
 rg -q '^demo-evidence:' Makefile
 rg -q '^submission-check:' Makefile
 rg -q '^export-package:' Makefile
 rg -q 'fill-artifacts-dry-run' Makefile
 rg -q 'make verify' README.md CONTRIBUTING.md
+rg -q 'make ci' README.md CONTRIBUTING.md .github/workflows/ci.yml
 rg -q 'fill-submission-artifacts' README.md CONTRIBUTING.md
 rg -q 'RWA Oracle Agent' README.md docs/project-guide.md skills/casper-buildathon-rwa-loop/SKILL.md
 rg -q 'Casper AI Toolkit Usage' README.md
@@ -124,6 +128,7 @@ rg -qi 'final verification' scripts/final-verify.sh
 rg -q 'repo-url' scripts/fill-submission-artifacts.mjs
 rg -q 'Submission readiness check' scripts/check-submission-ready.mjs
 rg -q 'PAYMENT_REQUIRED' scripts/capture-demo-evidence.sh docs/demo-video-script.md
+rg -q 'CI quick check' scripts/ci-quick-check.sh
 rg -q 'git archive' scripts/export-submission-package.sh README.md CONTRIBUTING.md
 rg -q 'OracleRegistry' docs/project-guide.md DESIGN_TRADEOFFS.md
 rg -q 'DataFeed' docs/project-guide.md DESIGN_TRADEOFFS.md

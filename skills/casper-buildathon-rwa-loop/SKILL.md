@@ -90,6 +90,12 @@ For a clean source archive/manifest from the final commit, run:
 make export-package
 ```
 
+After pushing to GitHub, inspect the CI workflow. The portable quick gate is:
+
+```bash
+make ci
+```
+
 ## External Blockers
 
 Do not invent these values:

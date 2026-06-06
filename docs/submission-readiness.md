@@ -74,3 +74,5 @@ Use `docs/dorahacks-submission-draft.md` as the working copy for the final BUIDL
 Run `make submission-check` after filling final links. It is expected to fail while public repo/video/Testnet hashes are still pending.
 
 Run `make export-package` after committing final changes if a clean source archive/manifest is useful for review or backup.
+
+The repository includes `.github/workflows/ci.yml`; after pushing to a public remote, GitHub Actions should run `make ci` as a portable quick gate.

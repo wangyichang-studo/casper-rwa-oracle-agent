@@ -1,7 +1,10 @@
-.PHONY: verify scaffold-check contract-test contract-build deploy-check agent-test agent-build agent-demo mcp-check oracle-test demo-evidence diff-check fill-artifacts-dry-run submission-check export-package
+.PHONY: verify ci scaffold-check contract-test contract-build deploy-check agent-test agent-build agent-demo mcp-check oracle-test demo-evidence diff-check fill-artifacts-dry-run submission-check export-package
 
 verify:
 	./scripts/final-verify.sh
+
+ci:
+	./scripts/ci-quick-check.sh
 
 scaffold-check:
 	./scripts/verify-phase0.sh

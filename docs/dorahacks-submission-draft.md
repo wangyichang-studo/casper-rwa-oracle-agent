@@ -102,6 +102,7 @@ The gate covers:
 - livenet deploy binary check
 - 10 TypeScript agent tests
 - TypeScript build
+- portable GitHub Actions CI quick check
 - mock agent demo
 - CSPR.trade MCP smoke check
 - 3 x402 oracle-server tests

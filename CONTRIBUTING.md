@@ -28,6 +28,14 @@ make verify
 
 The full gate runs scaffold checks, Odra tests, WASM build, livenet deploy binary check, TypeScript tests/build, the mock agent demo, the MCP smoke check, oracle-server tests, and `git diff --check`.
 
+Run the portable CI gate used by GitHub Actions:
+
+```bash
+make ci
+```
+
+The CI gate intentionally avoids Odra/Casper native toolchain setup and checks documentation/secret hygiene, Node tests, TypeScript build, MCP smoke, artifact dry run, and whitespace.
+
 For smaller loops, use specific Make targets such as `make contract-test`, `make agent-test`, `make agent-demo`, or `make oracle-test`.
 
 Export a clean source archive from the current commit:
