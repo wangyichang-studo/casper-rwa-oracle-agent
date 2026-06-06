@@ -205,3 +205,22 @@ Mitigation:
 
 - Leave a clear place in README/Future Roadmap for MCP-based DeFi enrichment.
 - If final packaging finishes early, add a small `mcp-smoke.ts` script without making it a submission blocker.
+
+## Graceful CSPR.trade MCP Smoke Check
+
+Decision: add `agent-backend/src/mcp-smoke.ts` as a non-blocking smoke command instead of making CSPR.trade MCP central to the demo.
+
+Why:
+
+- Manus recommended showing a real integration point after Phase 5 approval.
+- No callable CSPR.trade MCP tool is available in this local Codex environment.
+- A smoke command helps reviewers see the intended `get_tokens` path without making unavailable tooling fail the project.
+
+Tradeoff:
+
+- The default local run reports "MCP unavailable" rather than returning live token data.
+
+Mitigation:
+
+- `npm run mcp:check` exits successfully when no MCP bridge is configured.
+- If a bridge module is provided through `CSPR_TRADE_MCP_MODULE`, the command calls `get_tokens` and logs a redacted token summary.

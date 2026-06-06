@@ -1,77 +1,64 @@
 # Casper RWA Oracle Agent
 
-Agentic RWA oracle prototype for the Casper Agentic Buildathon 2026.
+Autonomous real-world asset oracle agent for the Casper Agentic Buildathon 2026.
 
-The project will build an autonomous oracle agent that gathers synthetic off-chain RWA signals, requests paid premium evidence through x402, runs AI-style risk and confidence scoring, and publishes verified data plus oracle reputation updates to Casper Testnet through Odra smart contracts.
+## Overview
 
-## Buildathon Target
+Casper RWA Oracle Agent turns off-chain real-world asset signals into auditable Casper Testnet data. The agent loads RWA cases, scores risk and confidence, buys premium evidence through an x402-style paid oracle when a case is uncertain, hashes evidence provenance, and prepares Casper `publish_data` transactions against an Odra smart contract that tracks oracle identity, data feeds, and reputation.
 
-- Track: Casper Innovation Track
-- Focus: Agentic AI + Real-World Assets (RWA)
-- Required final artifacts:
-  - Working Casper Testnet prototype with a transaction-generating on-chain component
-  - Open-source GitHub/GitLab/Bitbucket repository with README and usage docs
-  - Public demo video explaining the project and walkthrough
+The project is designed for the Casper Innovation Track, focused on Agentic AI plus RWA. Raw private documents are never written on-chain; only values, confidence scores, evidence hashes, timestamps, and reputation state are stored or prepared for contract calls.
 
-## Current Phase
-
-Phase 3 has passed Manus review. Phase 4 adds the x402 paid evidence flow in mock/reference mode while live CSPR.cloud facilitator credentials, real Casper EIP-712 payment signing material, and Testnet publish keys remain pending.
-
-## Planned Architecture
+## Architecture
 
 ```mermaid
 flowchart LR
-  CaseData["Synthetic RWA market data"] --> Agent["RWA Oracle Agent"]
-  Agent --> Policy["Risk and confidence model"]
-  Agent --> Oracle["x402 Evidence Oracle"]
-  Oracle --> Facilitator["CSPR.cloud x402 Facilitator or local casper-x402 fallback"]
-  Agent --> Contract["OracleRegistry + DataFeed + ReputationScore"]
-  Contract --> Explorer["CSPR.cloud / CSPR.live verification"]
+  Cases["Synthetic RWA cases"] --> Agent["TypeScript Oracle Agent"]
+  Agent --> Risk["Risk and confidence model"]
+  Risk --> X402{"Borderline confidence?"}
+  X402 -->|"yes"| Oracle["x402 Paid Evidence Oracle"]
+  Oracle --> Facilitator["CSPR.cloud x402 Facilitator<br/>or local mock/reference mode"]
+  Facilitator --> Oracle
+  Oracle --> Agent
+  X402 -->|"no"| Agent
+  Agent --> Publisher["Casper deploy builder"]
+  Publisher --> Contract["Odra RwaOracle contract"]
+  Contract --> State["OracleRegistry<br/>DataFeed<br/>ReputationScore"]
+  State --> Explorer["CSPR.cloud / CSPR.live verification"]
 ```
 
-## Repository Layout
+## Key Features
 
-- `contracts/`: Odra smart contract workspace planned for oracle registry, data feed, and reputation modules
-  - `contracts/rwa-oracle/`: Phase 1 Odra contract crate and unit tests
-- `agent-backend/`: TypeScript oracle agent for RWA data evaluation, evidence hashing, and mock/live transaction publishing
-- `oracle-server/`: x402 evidence oracle planned for paid RWA risk and market evidence
-  - `oracle-server/`: Phase 4 HTTP 402 paid RWA risk-score endpoint
-- `docs/`: official rules, implementation guide, resources, and demo planning
-- `checkpoints/`: Codex checkpoint reports for Manus review
-- `manus_outbox/`: exact messages prepared for Manus submission
-- `manus_feedback/`: saved Manus feedback and feedback log
-- `skills/casper-buildathon-rwa-loop/`: project-specific Codex skill/guide
+- Autonomous RWA data collection and AI-style risk assessment.
+- x402 paid evidence flow with `402 Payment Required`, signed retry, and premium data response.
+- Borderline-case upgrade logic: the agent pays only when extra evidence can change the decision.
+- Odra `RwaOracle` contract with self-registered oracle identity, data feed history, evidence hashes, reputation updates, slashing, and owner-only pause.
+- Mock-first terminal demo plus live Testnet deployment path that keeps private keys and API tokens local.
+- Manus review loop evidence saved in `checkpoints/`, `manus_outbox/`, and `manus_feedback/`.
 
-## Secret Handling
+## Casper AI Toolkit Usage
 
-Do not commit private keys, API keys, CSPR.cloud tokens, `.env` files, or raw private asset documents. Final implementation will use environment variables and local key paths only.
+- **Odra**: smart contract implementation, tests, wasm build, and livenet deploy/register/publish runner.
+- **Casper Testnet / CSPR.cloud endpoints**: documented node, events, REST, and MCP endpoints for deployment and verification.
+- **x402**: paid premium RWA evidence flow using the CSPR.cloud facilitator shape, with local mock/reference mode while facilitator credentials are pending.
+- **CSPR.trade MCP**: optional enrichment path for future DeFi context. `npm run mcp:check` exposes a graceful smoke-test entry point that calls `get_tokens` when an MCP bridge is configured and exits cleanly when the local tool is unavailable.
 
-## Phase 1 Contract Verification
+## Quick Start
 
-The Odra crate uses nightly Rust because `odra-macros 2.7.2` currently requires a nightly feature. The contract crate includes `contracts/rwa-oracle/rust-toolchain.toml`.
+Requirements:
 
-Run:
+- Node.js 22 or newer
+- Rust nightly with `wasm32-unknown-unknown`
+- `cargo-odra`
+- Binaryen and WABT for wasm optimization/stripping when building the contract for livenet
+
+Run the Odra contract tests:
 
 ```bash
 cd contracts/rwa-oracle
 cargo odra test
 ```
 
-Latest local result: 7 tests passed for duplicate registration rejection, registered publish success with evidence hash, unregistered publish rejection, reputation/slash behavior, newest-first history reads, paused-oracle publish rejection, and owner-only pause enforcement.
-
-## Phase 2 Testnet Deployment
-
-See `docs/phase-2-deployment.md`.
-
-```bash
-cd contracts/rwa-oracle
-cargo odra build -c RwaOracle
-cargo run --bin deploy --features livenet
-```
-
-The deploy runner reads local Odra livenet variables from `.env`, deploys `RwaOracle`, registers the signing account as the demo oracle, publishes one sample RWA datapoint, and prints the contract package hash plus sample output. Real `.env` and key files must stay local and uncommitted.
-
-## Phase 3 Agent Core
+Run the TypeScript agent in mock mode:
 
 ```bash
 cd agent-backend
@@ -79,36 +66,143 @@ npm install
 npm test
 npm run build
 npm run agent:mock
+npm run mcp:check
 ```
 
-Mock mode logs the full perception → evidence → decision → publish path and emits mock transaction hashes plus unsigned Casper `publish_data` deploy JSON.
-
-## Phase 4 x402 Evidence Flow
-
-See `docs/phase-4-x402.md`.
-
-Default mock/reference flow:
-
-```bash
-cd agent-backend
-npm test
-npm run build
-npm run agent:mock
-```
-
-Local HTTP x402 flow:
+Run the x402 oracle server tests:
 
 ```bash
 cd oracle-server
 npm test
+```
+
+Exercise the local HTTP 402 flow:
+
+```bash
+cd oracle-server
 npm start
 ```
 
-Then in another shell:
+In another shell:
 
 ```bash
 cd agent-backend
 X402_ORACLE_BASE_URL=http://127.0.0.1:3002 npm run agent:mock
 ```
 
-The agent receives a `402 Payment Required` challenge, signs a mock/reference `PAYMENT-SIGNATURE`, receives premium evidence, and upgrades the borderline lease case to a publish decision.
+Expected terminal story:
+
+1. The agent loads synthetic RWA cases.
+2. A borderline warehouse lease case triggers premium evidence lookup.
+3. The oracle server returns `402 Payment Required`.
+4. The agent builds a mock/reference Casper x402 payment payload.
+5. The agent retries with `PAYMENT-SIGNATURE`.
+6. The oracle returns premium risk evidence and `PAYMENT-RESPONSE`.
+7. The agent upgrades the case to publish and prints Casper `publish_data` deploy JSON.
+
+## Smart Contract (Testnet)
+
+- Contract: `contracts/rwa-oracle`
+- Module: `RwaOracle`
+- Network: `casper-test`
+- Contract package hash: pending live Testnet deployment
+- Explorer base: [CSPR.live Testnet](https://testnet.cspr.live/)
+
+The livenet deployment path is implemented in `contracts/rwa-oracle/src/bin/deploy.rs` and documented in `docs/phase-2-deployment.md`.
+
+```bash
+cd contracts/rwa-oracle
+cargo odra build -c RwaOracle
+cargo run --bin deploy --features livenet
+```
+
+Live deployment requires local-only materials:
+
+- `contracts/rwa-oracle/.env`, copied from `.env.example`
+- a Casper Testnet secret key in `contracts/rwa-oracle/keys/`
+- enough faucet CSPR for deploy gas
+
+No `.env`, PEM, key, token, or raw private asset document should be committed or sent to Manus.
+
+## Demo Video
+
+Demo script: `docs/demo-video-script.md`
+
+Public video URL: pending recording and upload before DoraHacks submission.
+
+Recommended qualification demo path:
+
+1. Show this README and architecture diagram.
+2. Run `npm run agent:mock`.
+3. Show the x402 logs: `PAYMENT_REQUIRED -> PAYMENT_SIGNED -> DATA_RECEIVED`.
+4. Show the upgraded publish decision and Casper deploy JSON.
+5. If Testnet keys are available, show the deployed contract package and transaction hash in CSPR.live.
+
+## Project Structure
+
+```text
+.
+├── agent-backend/          TypeScript RWA oracle agent
+├── contracts/rwa-oracle/   Odra smart contract and livenet deploy runner
+├── oracle-server/          Local x402 paid evidence oracle
+├── docs/                   Rules, resources, phase docs, demo script
+├── checkpoints/            Phase reports for Manus review
+├── manus_outbox/           Messages submitted to Manus
+├── manus_feedback/         Saved Manus responses
+├── scripts/                Verification scripts
+└── skills/                 Project-specific Codex skill
+```
+
+## Current Verification
+
+Latest local gates:
+
+- `cd contracts/rwa-oracle && cargo odra test`: 7 tests passed
+- `cd contracts/rwa-oracle && cargo odra build -c RwaOracle`: passed with macOS `DYLD_LIBRARY_PATH="$(rustc --print sysroot)/lib"` workaround when needed
+- `cd contracts/rwa-oracle && cargo check --features livenet --bin deploy`: passed
+- `cd agent-backend && npm test`: 10 tests passed
+- `cd agent-backend && npm run build`: passed
+- `cd agent-backend && npm run mcp:check`: passed with graceful CSPR.trade MCP unavailable notice
+- `cd oracle-server && npm test`: 3 tests passed
+- `./scripts/verify-phase0.sh`: structure and secret scan passed
+
+Live external blockers:
+
+- user-provided funded Casper Testnet key
+- deployed contract package hash
+- CSPR.cloud x402 facilitator authorization token
+- real Casper EIP-712 payment signing material
+
+## Submission Readiness
+
+See `docs/submission-readiness.md`.
+
+Must-have artifacts for DoraHacks:
+
+- ✅ Open-source-ready repository contents
+- ✅ README with usage instructions
+- ✅ Working local prototype and tests
+- ✅ Transaction-generating Casper Testnet deploy path
+- ⏳ Live Testnet contract hash after key material is provided
+- ⏳ Public GitHub/GitLab/Bitbucket remote URL
+- ⏳ Public demo video URL
+
+## Comparison With Existing Solutions
+
+Most RWA compliance and oracle workflows are manually reviewed, centralized, or opaque about evidence provenance. This prototype combines autonomous case triage, paid evidence retrieval, and Casper on-chain provenance so reviewers can inspect why an RWA signal was published, which evidence hash supported it, and which oracle identity is accountable. The current mock-first flow keeps the qualification demo reliable while preserving a direct path to live CSPR.cloud x402 settlement and Testnet verification.
+
+## Future Roadmap
+
+- Q3 2026: complete live Casper Testnet deployment, publish transaction hashes, and wire real CSPR.cloud x402 facilitator settlement.
+- Q3 2026: add CSPR.trade MCP enrichment for on-chain DeFi context around RWA risk decisions.
+- Q4 2026: launch a multi-oracle reputation network with owner/governance controls.
+- Q4 2026: add verifiable credential and compliance attestations without storing raw KYC files on-chain.
+- Mainnet path: harden contract upgrades, expand paid data providers, and publish social/community channels for long-term launch support.
+
+## Team
+
+Solo builder project prepared for the Casper Agentic Buildathon 2026 qualification round. Public profile, social, repository, and demo links should be attached on the DoraHacks submission page before final submission.
+
+## License
+
+MIT. See `LICENSE`.

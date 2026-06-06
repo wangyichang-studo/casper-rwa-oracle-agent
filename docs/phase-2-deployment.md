@@ -37,7 +37,7 @@ This writes `wasm/RwaOracle.wasm`, which the livenet deploy script loads.
 On this macOS workstation, Rust nightly's `rust-lld` may need the toolchain library path:
 
 ```bash
-DYLD_LIBRARY_PATH="$HOME/.rustup/toolchains/nightly-aarch64-apple-darwin/lib" cargo odra build -c RwaOracle
+DYLD_LIBRARY_PATH="$(rustc --print sysroot)/lib" cargo odra build -c RwaOracle
 ```
 
 ## Deploy And Publish Demo Data

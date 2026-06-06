@@ -7,3 +7,4 @@
 | 02 | 2026-06-06 | `manus_feedback/Manus 反馈 — Checkpoint 02.md` | Passed | Phase 2 deployment path approved after 7 Odra tests; proceed to Phase 3 Agent core in mock mode while Testnet key material is pending. |
 | 03 | 2026-06-06 | `manus_feedback/Manus 反馈 — Checkpoint 03.md` | Passed | Phase 3 Agent core approved; Manus instructed Phase 4 to prioritize x402 paid evidence flow, with CSPR.trade MCP as optional enhancement. |
 | 04 | 2026-06-07 | `manus_feedback/Manus 反馈 — Checkpoint 04.md` | Passed | Phase 4 x402 paid evidence flow approved; Manus instructed Phase 5 to prioritize README, demo script, final safety checks, and submission readiness before optional CSPR.trade smoke testing. |
+| 05 | 2026-06-07 | `manus_feedback/Manus 反馈 — Checkpoint 05.md` | Passed with optional P1 optimizations | Final packaging approved; Manus confirmed local development loop complete and recommended adding an MCP smoke script plus a clearer submission-readiness table. |

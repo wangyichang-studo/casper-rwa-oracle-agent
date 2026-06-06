@@ -109,3 +109,17 @@
   - Run `./scripts/verify-phase0.sh` as a final structure gate.
   - Report final artifact readiness with ✅/⏳ status.
 - CSPR.trade MCP remains optional after README/Demo packaging, not a blocker for final qualification readiness.
+
+## 2026-06-07 - Checkpoint 05 Manus Final Review
+
+- Checkpoint 05 was delivered through the Manus desktop UI and Manus approved Phase 5.
+- Manus confirmed the local development loop is complete: code, tests, README, demo script, and submission package are ready.
+- Remaining work is external submission material only:
+  - funded Casper Testnet key and live deployment hash
+  - public GitHub/GitLab/Bitbucket repository URL
+  - public demo video URL
+- Implemented Manus' P1/P2 final packaging suggestions:
+  - added `agent-backend/src/mcp-smoke.ts` and `npm run mcp:check`
+  - split `docs/submission-readiness.md` into local status, public status, and human action columns
+  - added a README comparison section for real-world applicability
+- Kept CSPR.trade MCP non-blocking: the smoke script exits cleanly when no local MCP bridge is configured and becomes a real `get_tokens` check when a bridge module is provided.
