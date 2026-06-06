@@ -105,6 +105,7 @@ The gate covers:
 - mock agent demo
 - CSPR.trade MCP smoke check
 - 3 x402 oracle-server tests
+- local HTTP x402 demo evidence capture
 - final artifact fill dry run
 - git whitespace check
 

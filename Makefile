@@ -1,4 +1,4 @@
-.PHONY: verify scaffold-check contract-test contract-build deploy-check agent-test agent-build agent-demo mcp-check oracle-test diff-check fill-artifacts-dry-run
+.PHONY: verify scaffold-check contract-test contract-build deploy-check agent-test agent-build agent-demo mcp-check oracle-test demo-evidence diff-check fill-artifacts-dry-run
 
 verify:
 	./scripts/final-verify.sh
@@ -29,6 +29,9 @@ mcp-check:
 
 oracle-test:
 	cd oracle-server && npm test
+
+demo-evidence:
+	./scripts/capture-demo-evidence.sh
 
 diff-check:
 	git diff --check

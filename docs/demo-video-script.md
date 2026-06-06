@@ -38,17 +38,10 @@ npm run agent:mock
 Local HTTP x402 run:
 
 ```bash
-cd oracle-server
-npm test
-npm start
+make demo-evidence
 ```
 
-In a second terminal:
-
-```bash
-cd agent-backend
-X402_ORACLE_BASE_URL=http://127.0.0.1:3002 npm run agent:mock
-```
+This writes ignored evidence logs under `tmp/` and confirms `PAYMENT_REQUIRED`, `PAYMENT_SIGNED`, `DATA_RECEIVED`, `TRANSACTION_PREPARED`, and `COMPLETE`.
 
 Optional live Testnet segment after keys are available:
 

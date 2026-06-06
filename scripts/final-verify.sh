@@ -36,6 +36,8 @@ run_step "CSPR.trade MCP smoke check" bash -lc "cd '$ROOT_DIR/agent-backend' && 
 
 run_step "x402 oracle-server tests" bash -lc "cd '$ROOT_DIR/oracle-server' && npm test"
 
+run_step "Local HTTP x402 demo evidence" bash -lc "cd '$ROOT_DIR' && ./scripts/capture-demo-evidence.sh --output-dir '$ROOT_DIR/tmp/final-verify-demo-evidence' --port 3102"
+
 run_step "Final artifact fill dry run" bash -lc "cd '$ROOT_DIR' && make fill-artifacts-dry-run"
 
 run_step "Git whitespace check" bash -lc "cd '$ROOT_DIR' && git diff --check"

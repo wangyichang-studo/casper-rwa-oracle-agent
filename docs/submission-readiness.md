@@ -11,7 +11,7 @@ Status timestamp: 2026-06-07 00:35 CST.
 | Working prototype | ✅ `make verify` passes | ✅ Local prototype can be reviewed | Run the demo commands during video recording. |
 | Casper Testnet prototype path | ✅ Deploy/register/publish runner implemented | ⏳ Pending live deployment | Provide funded Testnet key and run the livenet deploy command. |
 | Transaction-generating on-chain component | ✅ Odra tests, WASM build, and livenet deploy binary check pass | ⏳ Pending live contract/deploy hash | Record contract package hash and sample deploy hash after deployment. |
-| x402 paid evidence flow | ✅ Mock/reference and local HTTP modes pass | ✅ Mock/reference mode is demo-ready | Optional: configure live facilitator credentials before recording. |
+| x402 paid evidence flow | ✅ Mock/reference, local HTTP mode, and demo evidence capture pass | ✅ Mock/reference mode is demo-ready | Optional: configure live facilitator credentials before recording. |
 | CSPR.trade MCP smoke check | ✅ Graceful placeholder command ready | ✅ Non-blocking enrichment path documented | Optional: configure MCP bridge and rerun `npm run mcp:check`. |
 | Public demo video | ✅ Script ready | ⏳ Pending upload | Record and upload a public 3-5 minute demo video. |
 

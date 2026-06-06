@@ -96,6 +96,12 @@ Run the full local qualification gate:
 make verify
 ```
 
+Capture local HTTP x402 evidence for demo recording:
+
+```bash
+make demo-evidence
+```
+
 After public repo/video/Testnet artifacts exist, fill the final submission links:
 
 ```bash
@@ -182,6 +188,7 @@ Latest local gates:
 - `cd agent-backend && npm run build`: passed
 - `cd agent-backend && npm run mcp:check`: passed with graceful CSPR.trade MCP unavailable notice
 - `cd oracle-server && npm test`: 3 tests passed
+- `make demo-evidence`: local HTTP x402 evidence capture passed
 - `make verify`: full local qualification gate passed
 - `make fill-artifacts-dry-run`: final artifact fill script dry run passed
 - `./scripts/verify-phase0.sh`: structure and secret scan passed
