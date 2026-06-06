@@ -96,6 +96,16 @@ Run the full local qualification gate:
 make verify
 ```
 
+After public repo/video/Testnet artifacts exist, fill the final submission links:
+
+```bash
+node scripts/fill-submission-artifacts.mjs \
+  --repo-url https://github.com/YOUR_ACCOUNT/casper-rwa-oracle-agent \
+  --demo-url https://YOUR_PUBLIC_VIDEO_URL \
+  --contract-package-hash hash-YOUR_CONTRACT_PACKAGE_HASH \
+  --deploy-hash YOUR_SAMPLE_DEPLOY_HASH
+```
+
 Expected terminal story:
 
 1. The agent loads synthetic RWA cases.
@@ -171,6 +181,7 @@ Latest local gates:
 - `cd agent-backend && npm run mcp:check`: passed with graceful CSPR.trade MCP unavailable notice
 - `cd oracle-server && npm test`: 3 tests passed
 - `make verify`: full local qualification gate passed
+- `make fill-artifacts-dry-run`: final artifact fill script dry run passed
 - `./scripts/verify-phase0.sh`: structure and secret scan passed
 
 Live external blockers:

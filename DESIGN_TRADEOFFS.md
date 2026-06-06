@@ -243,3 +243,22 @@ Mitigation:
 
 - Keep focused Make targets for smaller loops.
 - Keep the full gate credential-free so it never requires private keys or live Testnet material.
+
+## Scripted Final Artifact Fill
+
+Decision: add `scripts/fill-submission-artifacts.mjs` instead of expecting final repo, video, and Testnet links to be edited by hand.
+
+Why:
+
+- The remaining public submission fields are easy to mistype under deadline pressure.
+- The script can validate URL hosts and Casper hash shape before updating README/readiness docs.
+- It keeps private keys and live credentials out of the repo while still automating public metadata insertion.
+
+Tradeoff:
+
+- It does not create the GitHub repository, upload the video, or deploy the contract; those still require external authenticated actions.
+
+Mitigation:
+
+- Provide `--dry-run` and a Make target so the script can be verified without changing files.
+- Keep updates scoped to public metadata fields only.

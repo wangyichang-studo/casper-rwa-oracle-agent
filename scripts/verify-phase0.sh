@@ -68,6 +68,7 @@ required_paths=(
   "manus_feedback/Manus 反馈 — Checkpoint 00.md"
   "manus_feedback/Manus 反馈 — Checkpoint 05.md"
   "scripts/final-verify.sh"
+  "scripts/fill-submission-artifacts.mjs"
   "scripts/verify-phase0.sh"
   "skills/casper-buildathon-rwa-loop/SKILL.md"
   "skills/casper-buildathon-rwa-loop/agents/openai.yaml"
@@ -100,7 +101,9 @@ fi
 
 rg -q 'Casper Innovation Track' docs/official-rules.md
 rg -q '^verify:' Makefile
+rg -q 'fill-artifacts-dry-run' Makefile
 rg -q 'make verify' README.md CONTRIBUTING.md
+rg -q 'fill-submission-artifacts' README.md CONTRIBUTING.md
 rg -q 'RWA Oracle Agent' README.md docs/project-guide.md skills/casper-buildathon-rwa-loop/SKILL.md
 rg -q 'Casper AI Toolkit Usage' README.md
 rg -q 'Submission Readiness' README.md docs/submission-readiness.md
@@ -110,6 +113,7 @@ rg -q 'TypeScript RWA oracle agent' agent-backend/README.md
 rg -q 'mcp:check' README.md agent-backend/package.json
 rg -q 'CSPR.trade MCP' README.md docs/submission-readiness.md agent-backend/src/mcp-smoke.ts
 rg -qi 'final verification' scripts/final-verify.sh
+rg -q 'repo-url' scripts/fill-submission-artifacts.mjs
 rg -q 'OracleRegistry' docs/project-guide.md DESIGN_TRADEOFFS.md
 rg -q 'DataFeed' docs/project-guide.md DESIGN_TRADEOFFS.md
 rg -q 'ReputationScore' docs/project-guide.md DESIGN_TRADEOFFS.md

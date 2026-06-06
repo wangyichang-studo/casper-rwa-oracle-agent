@@ -27,6 +27,7 @@ Phase 5: documentation, demo packaging, final safety checks, and submission read
 - Updated `scripts/verify-phase0.sh` to require Phase 5 docs, the license, README sections, `.gitignore` safety patterns, and demo-script evidence.
 - After Manus final review, added the optional P1 MCP smoke script and split the submission-readiness table into local status, public submission status, and human action columns.
 - Added the optional Makefile polish and a credential-free `make verify` final gate.
+- Added `scripts/fill-submission-artifacts.mjs` so final repo/video/Testnet links can be validated and inserted without manual README edits.
 
 ## Self-Review Against Buildathon Requirements
 
@@ -73,6 +74,12 @@ make verify
 Result: full local qualification gate passed.
 
 ```bash
+make fill-artifacts-dry-run
+```
+
+Result: final artifact fill script dry run passed.
+
+```bash
 cd agent-backend
 npm test
 npm run build
@@ -107,7 +114,7 @@ Result: local HTTP x402 integration passed; the agent received a real local `402
 ./scripts/verify-phase0.sh
 ```
 
-Result: `Scaffold verification passed: 69 required paths present, no secret-like files, no placeholders.`
+Result: `Scaffold verification passed: 70 required paths present, no secret-like files, no placeholders.`
 
 ```bash
 git diff --check

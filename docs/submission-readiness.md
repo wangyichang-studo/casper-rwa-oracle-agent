@@ -66,3 +66,5 @@ Status timestamp: 2026-06-07 00:35 CST.
 - Public repository URL.
 - Public demo video URL.
 - Optional project social link for the long-term launch plan section.
+
+When these values exist, run `node scripts/fill-submission-artifacts.mjs` to update README and this readiness file without hand-editing final links.

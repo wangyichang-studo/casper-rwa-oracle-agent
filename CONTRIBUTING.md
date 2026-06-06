@@ -30,6 +30,24 @@ The full gate runs scaffold checks, Odra tests, WASM build, livenet deploy binar
 
 For smaller loops, use specific Make targets such as `make contract-test`, `make agent-test`, `make agent-demo`, or `make oracle-test`.
 
+## Filling Final Submission Links
+
+After the public repository, demo video, and live Testnet hashes exist, update the final docs with:
+
+```bash
+node scripts/fill-submission-artifacts.mjs \
+  --repo-url https://github.com/YOUR_ACCOUNT/casper-rwa-oracle-agent \
+  --demo-url https://YOUR_PUBLIC_VIDEO_URL \
+  --contract-package-hash hash-YOUR_CONTRACT_PACKAGE_HASH \
+  --deploy-hash YOUR_SAMPLE_DEPLOY_HASH
+```
+
+Preview without writing files:
+
+```bash
+make fill-artifacts-dry-run
+```
+
 ## Secret Handling
 
 Never commit:
