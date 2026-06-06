@@ -60,7 +60,15 @@ flowchart TD
 - Test duplicate registration, registered publishing, unregistered publishing rejection, reputation updates, and slash behavior.
 - Status: passed Manus Checkpoint 01. Manus requested and Codex implemented `evidence_hash` plus owner-only `pause_oracle` before Phase 2.
 
-### Phase 2: Agent and Compliance Workflow
+### Phase 2: Testnet Deployment and Agent Workflow
+
+- Prepare Odra livenet dependencies, wasm build binary, `.env.example`, and deploy runner.
+- Deploy `RwaOracle` to Casper Testnet after local key material is available.
+- Register the signing account as the first demo oracle.
+- Publish one demo RWA datapoint with evidence hash and record the contract package hash plus deploy/call transaction evidence.
+- Status: passed Manus Checkpoint 02 with 7 Odra tests. Live Testnet deploy remains pending local key material, but Manus approved starting Phase 3 in mock mode.
+
+### Phase 3: AI Agent Core
 
 - Create a TypeScript backend.
 - Load synthetic RWA market and asset cases.
@@ -68,14 +76,14 @@ flowchart TD
 - Produce explainable decisions.
 - Submit oracle data and reputation workflows using local key material only.
 
-### Phase 3: x402 Evidence Service
+### Phase 4: x402 Evidence Service
 
 - Implement paid risk evidence endpoint.
 - Return `402 Payment Required` when no payment proof is supplied.
 - Verify signed retry through CSPR.cloud facilitator when available.
 - Use local casper-x402 fallback when live sponsored access is unavailable.
 
-### Phase 4: Demo, Docs, and Submission
+### Phase 5: Demo, Docs, and Submission
 
 - Final README with setup, contract hashes, transaction hashes, and demo walkthrough.
 - Public demo video script.

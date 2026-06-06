@@ -3,6 +3,7 @@ node_modules/
 dist/
 build/
 target/
+contracts/**/wasm/
 .cache/
 coverage/
 
@@ -23,4 +24,3 @@ tmp/
 .worktrees/
 .idea/
 .vscode/
-

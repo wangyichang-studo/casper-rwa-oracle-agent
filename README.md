@@ -15,7 +15,7 @@ The project will build an autonomous oracle agent that gathers synthetic off-cha
 
 ## Current Phase
 
-Phase 1 passed Manus review. The Odra contract crate now includes `RwaOracle`, covering oracle registration, data publication, evidence hashes, latest/history reads, reputation updates, owner-controlled slashing, and owner-controlled oracle pause.
+Phase 2 has passed Manus review. The Odra contract crate includes `RwaOracle`, covering oracle registration, data publication, evidence hashes, latest/history reads, reputation updates, owner-controlled slashing, and owner-controlled oracle pause. A livenet deployment runner is prepared for Casper Testnet and is waiting on local Testnet key material. Phase 3 begins the TypeScript agent core in mock mode while live deployment materials are pending.
 
 ## Planned Architecture
 
@@ -56,4 +56,16 @@ cd contracts/rwa-oracle
 cargo odra test
 ```
 
-Latest local result: 6 tests passed for duplicate registration rejection, registered publish success with evidence hash, unregistered publish rejection, reputation/slash behavior, newest-first history reads, and paused-oracle publish rejection.
+Latest local result: 7 tests passed for duplicate registration rejection, registered publish success with evidence hash, unregistered publish rejection, reputation/slash behavior, newest-first history reads, paused-oracle publish rejection, and owner-only pause enforcement.
+
+## Phase 2 Testnet Deployment
+
+See `docs/phase-2-deployment.md`.
+
+```bash
+cd contracts/rwa-oracle
+cargo odra build -c RwaOracle
+cargo run --bin deploy --features livenet
+```
+
+The deploy runner reads local Odra livenet variables from `.env`, deploys `RwaOracle`, registers the signing account as the demo oracle, publishes one sample RWA datapoint, and prints the contract package hash plus sample output. Real `.env` and key files must stay local and uncommitted.

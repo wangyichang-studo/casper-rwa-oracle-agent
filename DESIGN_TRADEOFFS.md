@@ -78,6 +78,24 @@ Mitigation:
 - Reputation and slashing remain owner-controlled.
 - Phase 2 deployment logs can show the owner pause path as a safety control.
 
+## Keep Pause Oracle Out Of Qualification Demo
+
+Decision: document and test `pause_oracle`, but do not spend demo time on a pause transaction in the qualification video.
+
+Why:
+
+- Manus recommended focusing the 3-5 minute demo on the core value flow: data collection, AI assessment, and on-chain publishing.
+- `pause_oracle` is a safety mechanism that reviewers can verify through README, code, and Odra tests.
+
+Tradeoff:
+
+- The demo shows less governance/security behavior.
+
+Mitigation:
+
+- Keep owner-only pause covered by tests, including a non-owner rejection test.
+- Revisit live pause demonstration only if the project reaches a longer final-round demo.
+
 ## Evidence Hash Placeholder Before x402 Integration
 
 Decision: add `evidence_hash: Option<String>` to `DataPoint` before the x402 service exists.
@@ -110,3 +128,21 @@ Tradeoff:
 Mitigation:
 
 - The crate declares the toolchain locally so `cargo odra test` selects nightly automatically.
+
+## Commit Wasm Build Config, Ignore Wasm Artifacts
+
+Decision: commit `.cargo/config.toml` with `--allow-undefined` for Casper wasm imports, but ignore generated `wasm/` output.
+
+Why:
+
+- Casper host functions are imported by the deployed module and must remain undefined at link time.
+- `cargo odra build` can regenerate `wasm/RwaOracle.wasm` before deployment.
+- Keeping generated wasm out of git avoids stale build artifacts.
+
+Tradeoff:
+
+- A contributor must run the build command before livenet deployment.
+
+Mitigation:
+
+- `docs/phase-2-deployment.md` lists the exact build command and build tools.

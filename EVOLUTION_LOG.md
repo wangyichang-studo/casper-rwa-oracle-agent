@@ -33,3 +33,25 @@
   - Add owner-only `pause_oracle(oracle_id)` and a test that paused oracles cannot publish.
 - Implemented both changes and updated local verification to 6 passing tests.
 - Next phase is Testnet deployment preparation, pending user-provided Testnet key material and CSPR.cloud access where needed.
+
+## 2026-06-06 - Phase 2 Testnet Deployment Path Ready
+
+- Added Odra livenet support for `contracts/rwa-oracle`.
+- Added `build.rs`, `rwa_oracle_build_contract`, `.cargo/config.toml` wasm rustflags, and `src/bin/deploy.rs`.
+- Deploy runner performs the first end-to-end chain workflow once keys are available:
+  - deploy `RwaOracle`
+  - register the signer as `casper-rwa-agent-demo`
+  - publish one demo RWA datapoint with an evidence hash
+  - print contract package hash and sample output
+- Added `.env.example` and `docs/phase-2-deployment.md`.
+- Verified `cargo check --features livenet --bin deploy`, `cargo odra test`, and `cargo odra build -c RwaOracle`.
+- Live Testnet execution is blocked only by missing local `.env`, Testnet secret key, and faucet-funded account.
+
+## 2026-06-06 - Checkpoint 02 Manus Review
+
+- Phase 2 passed Manus review after resubmitting the complete checkpoint package.
+- Added one extra owner-only pause test before the final resend to align with Manus' `>= 7` test expectation.
+- Fresh Odra result: 7 tests passed.
+- Manus approved moving into Phase 3 Agent core while Testnet key material remains pending.
+- Manus confirmed the single-command deploy/register/publish runner satisfies the qualification need for a transaction-generating on-chain component.
+- Manus advised keeping `pause_oracle` as tested README/code functionality, not a demo-video transaction, so the demo can focus on data collection, AI assessment, and on-chain publishing.

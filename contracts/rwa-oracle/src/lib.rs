@@ -395,4 +395,21 @@ mod tests {
         }))
         .expect_err("paused oracle publish should revert");
     }
+
+    #[test]
+    fn pause_oracle_is_owner_only() {
+        let (env, mut contract, _owner, oracle, stranger) = deploy();
+        env.set_caller(oracle);
+        contract.register_oracle("northstar".to_string(), oracle);
+
+        env.set_caller(stranger);
+        std::panic::catch_unwind(std::panic::AssertUnwindSafe(|| {
+            contract.pause_oracle(oracle);
+        }))
+        .expect_err("non-owner pause should revert");
+
+        let info = contract.get_oracle_info(oracle);
+        assert!(info.active);
+        assert!(contract.is_registered(oracle));
+    }
 }
