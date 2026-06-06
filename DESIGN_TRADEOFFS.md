@@ -186,3 +186,22 @@ Mitigation:
 - Keep all live credentials outside git.
 - Document the external blockers explicitly.
 - Preserve the protocol field names and facilitator endpoint shape so real signing can replace the mock payload later.
+
+## Submission Packaging Before Optional CSPR.trade Smoke Test
+
+Decision: after Manus approved Phase 4, Phase 5 prioritizes final README, demo script, secret checks, and submission-readiness evidence before optional CSPR.trade MCP enrichment.
+
+Why:
+
+- Manus identified README/Demo packaging as the highest-leverage remaining qualification work.
+- The required DoraHacks artifacts must be ready before optional enhancements add complexity.
+- The x402 and Casper/Odra core already demonstrate the project theme strongly.
+
+Tradeoff:
+
+- The CSPR.trade MCP smoke check may remain a documented optional enhancement instead of a central demo step.
+
+Mitigation:
+
+- Leave a clear place in README/Future Roadmap for MCP-based DeFi enrichment.
+- If final packaging finishes early, add a small `mcp-smoke.ts` script without making it a submission blocker.

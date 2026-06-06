@@ -95,3 +95,17 @@
   - `agent-backend/src/x402-client.ts`.
   - Agent loop integration for borderline confidence cases.
   - Fresh logs showing `PAYMENT_REQUIRED -> PAYMENT_SIGNED -> DATA_RECEIVED`.
+
+## 2026-06-07 - Checkpoint 04 Manus Review
+
+- Checkpoint 04 was delivered through the Manus desktop UI after user authorization to send Manus updates directly.
+- Manus approved Phase 4.
+- Manus confirmed the mock/reference x402 implementation satisfies the milestone while live facilitator credentials and real Casper EIP-712 payment material remain pending.
+- Manus highlighted the core demo strength: a borderline-confidence RWA case triggers x402 premium evidence, upgrades the publish decision, and prepares the on-chain data payload with evidence provenance.
+- Manus directed Phase 5 to prioritize final submission packaging:
+  - Complete the root `README.md` with overview, architecture, AI Toolkit usage, quick start, contract/Testnet status, demo link placeholder, project structure, roadmap, team, and license.
+  - Add `docs/demo-video-script.md` for a 3-5 minute qualification video.
+  - Run final secret hygiene and `.gitignore` checks.
+  - Run `./scripts/verify-phase0.sh` as a final structure gate.
+  - Report final artifact readiness with ✅/⏳ status.
+- CSPR.trade MCP remains optional after README/Demo packaging, not a blocker for final qualification readiness.
