@@ -129,3 +129,4 @@ The gate covers:
 - Record and upload the public demo video.
 - Run `scripts/fill-submission-artifacts.mjs` with the final public URLs and hashes.
 - Re-run `make verify` before final DoraHacks submission.
+- Run `make submission-check` and confirm it passes before pressing submit.

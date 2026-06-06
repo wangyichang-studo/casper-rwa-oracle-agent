@@ -112,6 +112,12 @@ node scripts/fill-submission-artifacts.mjs \
   --deploy-hash YOUR_SAMPLE_DEPLOY_HASH
 ```
 
+Then run the stricter final submission check:
+
+```bash
+make submission-check
+```
+
 Expected terminal story:
 
 1. The agent loads synthetic RWA cases.
@@ -199,6 +205,8 @@ Live external blockers:
 - deployed contract package hash
 - CSPR.cloud x402 facilitator authorization token
 - real Casper EIP-712 payment signing material
+
+`make submission-check` intentionally fails until the public repository URL, public demo video URL, Testnet contract package hash, and sample deploy hash are filled.
 
 ## Submission Readiness
 

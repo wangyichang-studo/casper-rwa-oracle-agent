@@ -70,3 +70,5 @@ Status timestamp: 2026-06-07 00:35 CST.
 When these values exist, run `node scripts/fill-submission-artifacts.mjs` to update README and this readiness file without hand-editing final links.
 
 Use `docs/dorahacks-submission-draft.md` as the working copy for the final BUIDL form text.
+
+Run `make submission-check` after filling final links. It is expected to fail while public repo/video/Testnet hashes are still pending.

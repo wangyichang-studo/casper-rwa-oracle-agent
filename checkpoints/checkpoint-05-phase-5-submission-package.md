@@ -30,6 +30,7 @@ Phase 5: documentation, demo packaging, final safety checks, and submission read
 - Added `scripts/fill-submission-artifacts.mjs` so final repo/video/Testnet links can be validated and inserted without manual README edits.
 - Added `docs/dorahacks-submission-draft.md` as the BUIDL form working copy and updated the project skill with final verification/submission steps.
 - Added `scripts/capture-demo-evidence.sh` and `make demo-evidence` to capture the local HTTP x402 evidence package used for demo recording.
+- Added `scripts/check-submission-ready.mjs` and `make submission-check` as the strict final gate that fails until public repo/video/Testnet evidence is filled.
 
 ## Self-Review Against Buildathon Requirements
 
@@ -82,6 +83,12 @@ make demo-evidence
 Result: local HTTP x402 evidence capture passed and wrote ignored logs under `tmp/`.
 
 ```bash
+make submission-check
+```
+
+Result: expected failure while public repo/video/Testnet hashes are still pending.
+
+```bash
 make fill-artifacts-dry-run
 ```
 
@@ -122,7 +129,7 @@ Result: local HTTP x402 integration passed; the agent received a real local `402
 ./scripts/verify-phase0.sh
 ```
 
-Result: `Scaffold verification passed: 72 required paths present, no secret-like files, no placeholders.`
+Result: `Scaffold verification passed: 73 required paths present, no secret-like files, no placeholders.`
 
 ```bash
 git diff --check

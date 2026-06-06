@@ -8,6 +8,7 @@ import { fileURLToPath } from "node:url";
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const README = resolve(ROOT, "README.md");
 const READINESS = resolve(ROOT, "docs/submission-readiness.md");
+const DORAHACKS_DRAFT = resolve(ROOT, "docs/dorahacks-submission-draft.md");
 
 const { values } = parseArgs({
   options: {
@@ -263,10 +264,74 @@ function updateReadiness(text) {
   return next;
 }
 
+function replaceSectionBody(text, heading, body) {
+  const marker = `## ${heading}`;
+  const start = text.indexOf(marker);
+  if (start === -1) {
+    fail(`could not find section '${marker}'`);
+  }
+  const next = text.indexOf("\n## ", start + marker.length);
+  const end = next === -1 ? text.length : next;
+  const prefix = text.slice(0, start);
+  const rest = text.slice(end);
+  return `${prefix}${marker}\n\n${body.trim()}\n${rest}`;
+}
+
+function updateDorahacksDraft(text) {
+  let next = text;
+
+  if (repoUrl) {
+    next = replaceSectionBody(
+      next,
+      "Repository Link",
+      `[Public repository](${repoUrl})`,
+    );
+  }
+
+  if (demoUrl) {
+    next = replaceSectionBody(
+      next,
+      "Demo Video Link",
+      `[Public demo video](${demoUrl})`,
+    );
+  }
+
+  if (contractPackageHash || deployHash) {
+    const lines = [];
+    if (contractPackageHash) {
+      lines.push(`- Contract package: [${contractPackageHash}](${contractExplorerUrl(contractPackageHash)})`);
+    }
+    if (deployHash) {
+      lines.push(`- Sample deploy: [${deployHash}](${deployExplorerUrl(deployHash)})`);
+    }
+    next = replaceSectionBody(next, "Testnet Contract Evidence", lines.join("\n"));
+  }
+
+  if (repoUrl || demoUrl || contractPackageHash || deployHash) {
+    const actions = [];
+    if (!repoUrl) {
+      actions.push("- Create and push to a public GitHub/GitLab/Bitbucket repository.");
+    }
+    if (!contractPackageHash || !deployHash) {
+      actions.push("- Provide Casper Testnet key material and a funded account for live deployment.");
+    }
+    if (!demoUrl) {
+      actions.push("- Record and upload the public demo video.");
+    }
+    actions.push("- Re-run `make verify` before final DoraHacks submission.");
+    actions.push("- Run `make submission-check` and confirm it passes before pressing submit.");
+    next = replaceSectionBody(next, "Remaining Submission Actions", actions.join("\n"));
+  }
+
+  return next;
+}
+
 const readmeBefore = readFileSync(README, "utf8");
 const readinessBefore = readFileSync(READINESS, "utf8");
+const dorahacksDraftBefore = readFileSync(DORAHACKS_DRAFT, "utf8");
 const readmeAfter = updateReadme(readmeBefore);
 const readinessAfter = updateReadiness(readinessBefore);
+const dorahacksDraftAfter = updateDorahacksDraft(dorahacksDraftBefore);
 
 if (dryRun) {
   console.log("Dry run passed. Files that would change:");
@@ -276,15 +341,22 @@ if (dryRun) {
   if (readinessAfter !== readinessBefore) {
     console.log(`- ${READINESS}`);
   }
+  if (dorahacksDraftAfter !== dorahacksDraftBefore) {
+    console.log(`- ${DORAHACKS_DRAFT}`);
+  }
   process.exit(0);
 }
 
 writeFileSync(README, readmeAfter);
 writeFileSync(READINESS, readinessAfter);
+writeFileSync(DORAHACKS_DRAFT, dorahacksDraftAfter);
 console.log("Updated submission artifacts:");
 if (readmeAfter !== readmeBefore) {
   console.log(`- ${README}`);
 }
 if (readinessAfter !== readinessBefore) {
   console.log(`- ${READINESS}`);
+}
+if (dorahacksDraftAfter !== dorahacksDraftBefore) {
+  console.log(`- ${DORAHACKS_DRAFT}`);
 }

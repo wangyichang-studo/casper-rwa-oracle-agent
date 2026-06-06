@@ -70,6 +70,7 @@ required_paths=(
   "manus_feedback/Manus 反馈 — Checkpoint 05.md"
   "scripts/final-verify.sh"
   "scripts/fill-submission-artifacts.mjs"
+  "scripts/check-submission-ready.mjs"
   "scripts/capture-demo-evidence.sh"
   "scripts/verify-phase0.sh"
   "skills/casper-buildathon-rwa-loop/SKILL.md"
@@ -104,6 +105,7 @@ fi
 rg -q 'Casper Innovation Track' docs/official-rules.md
 rg -q '^verify:' Makefile
 rg -q '^demo-evidence:' Makefile
+rg -q '^submission-check:' Makefile
 rg -q 'fill-artifacts-dry-run' Makefile
 rg -q 'make verify' README.md CONTRIBUTING.md
 rg -q 'fill-submission-artifacts' README.md CONTRIBUTING.md
@@ -118,6 +120,7 @@ rg -q 'mcp:check' README.md agent-backend/package.json
 rg -q 'CSPR.trade MCP' README.md docs/submission-readiness.md agent-backend/src/mcp-smoke.ts
 rg -qi 'final verification' scripts/final-verify.sh
 rg -q 'repo-url' scripts/fill-submission-artifacts.mjs
+rg -q 'Submission readiness check' scripts/check-submission-ready.mjs
 rg -q 'PAYMENT_REQUIRED' scripts/capture-demo-evidence.sh docs/demo-video-script.md
 rg -q 'OracleRegistry' docs/project-guide.md DESIGN_TRADEOFFS.md
 rg -q 'DataFeed' docs/project-guide.md DESIGN_TRADEOFFS.md

@@ -1,4 +1,4 @@
-.PHONY: verify scaffold-check contract-test contract-build deploy-check agent-test agent-build agent-demo mcp-check oracle-test demo-evidence diff-check fill-artifacts-dry-run
+.PHONY: verify scaffold-check contract-test contract-build deploy-check agent-test agent-build agent-demo mcp-check oracle-test demo-evidence diff-check fill-artifacts-dry-run submission-check
 
 verify:
 	./scripts/final-verify.sh
@@ -38,3 +38,6 @@ diff-check:
 
 fill-artifacts-dry-run:
 	node scripts/fill-submission-artifacts.mjs --dry-run --repo-url https://github.com/example/casper-rwa-oracle-agent --demo-url https://example.com/demo --contract-package-hash hash-1111111111111111111111111111111111111111111111111111111111111111 --deploy-hash 2222222222222222222222222222222222222222222222222222222222222222
+
+submission-check:
+	node scripts/check-submission-ready.mjs

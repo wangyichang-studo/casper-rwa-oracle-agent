@@ -76,6 +76,14 @@ node scripts/fill-submission-artifacts.mjs \
 
 Then rerun `make verify`.
 
+Before pressing submit on DoraHacks, run:
+
+```bash
+make submission-check
+```
+
+This strict gate is expected to fail until the public repository URL, public demo video URL, Testnet contract package hash, and sample deploy hash are filled.
+
 ## External Blockers
 
 Do not invent these values:
