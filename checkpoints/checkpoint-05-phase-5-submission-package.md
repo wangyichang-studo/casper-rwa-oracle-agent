@@ -28,6 +28,7 @@ Phase 5: documentation, demo packaging, final safety checks, and submission read
 - After Manus final review, added the optional P1 MCP smoke script and split the submission-readiness table into local status, public submission status, and human action columns.
 - Added the optional Makefile polish and a credential-free `make verify` final gate.
 - Added `scripts/fill-submission-artifacts.mjs` so final repo/video/Testnet links can be validated and inserted without manual README edits.
+- Added `docs/dorahacks-submission-draft.md` as the BUIDL form working copy and updated the project skill with final verification/submission steps.
 
 ## Self-Review Against Buildathon Requirements
 
@@ -114,7 +115,7 @@ Result: local HTTP x402 integration passed; the agent received a real local `402
 ./scripts/verify-phase0.sh
 ```
 
-Result: `Scaffold verification passed: 70 required paths present, no secret-like files, no placeholders.`
+Result: `Scaffold verification passed: 71 required paths present, no secret-like files, no placeholders.`
 
 ```bash
 git diff --check

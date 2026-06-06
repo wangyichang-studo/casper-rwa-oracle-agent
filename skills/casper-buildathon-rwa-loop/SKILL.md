@@ -21,6 +21,8 @@ For each phase:
 6. Save the exact Manus response in `manus_feedback/`.
 7. Update `manus_feedback/feedback_log.md`.
 
+After Phase 5, treat extra polish as submission-hardening work. Do not create a fake new phase unless it changes core scope; instead update the final checkpoint, design tradeoffs, and evolution log.
+
 ## Current Product Direction
 
 Build an RWA oracle agent on Casper:
@@ -39,6 +41,8 @@ Final submission must include:
 - Open-source GitHub/GitLab/Bitbucket repo with README and usage docs.
 - Public demo video.
 
+Use `docs/dorahacks-submission-draft.md` as the working copy for DoraHacks BUIDL form text.
+
 Judging priorities include technical execution, innovation, agentic AI integration, RWA/DeFi applicability, UX, working Testnet smart contracts, long-term launch plan, and ecosystem impact.
 
 ## Casper Toolkit Usage
@@ -49,6 +53,40 @@ Use:
 - CSPR.cloud MCP/API for Testnet reads, event monitoring, and verification evidence.
 - x402 facilitator or local casper-x402 fallback for paid evidence flow.
 - CSPR.trade only as optional ecosystem smoke check; do not turn this project into a trading bot.
+
+## Final Verification
+
+Before claiming local readiness, run:
+
+```bash
+make verify
+```
+
+This covers scaffold/secret hygiene, Odra tests, WASM build, livenet deploy binary check, agent tests/build/mock demo, MCP smoke check, x402 oracle tests, final artifact fill dry run, and git whitespace checks.
+
+After public repository, demo video, and Testnet hashes exist, run:
+
+```bash
+node scripts/fill-submission-artifacts.mjs \
+  --repo-url https://github.com/YOUR_ACCOUNT/casper-rwa-oracle-agent \
+  --demo-url https://YOUR_PUBLIC_VIDEO_URL \
+  --contract-package-hash hash-YOUR_CONTRACT_PACKAGE_HASH \
+  --deploy-hash YOUR_SAMPLE_DEPLOY_HASH
+```
+
+Then rerun `make verify`.
+
+## External Blockers
+
+Do not invent these values:
+
+- public repository URL
+- public demo video URL
+- Casper Testnet contract package hash
+- Casper Testnet deploy hash
+- private key path, seed phrase, or API token
+
+If any are missing, keep them recorded as pending external inputs in `docs/submission-readiness.md`.
 
 ## Secret Rules
 

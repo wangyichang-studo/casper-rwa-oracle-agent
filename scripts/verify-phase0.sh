@@ -52,6 +52,7 @@ required_paths=(
   "docs/resources.md"
   "docs/demo-video-outline.md"
   "docs/demo-video-script.md"
+  "docs/dorahacks-submission-draft.md"
   "docs/phase-2-deployment.md"
   "docs/phase-3-agent.md"
   "docs/phase-4-x402.md"
@@ -109,6 +110,7 @@ rg -q 'Casper AI Toolkit Usage' README.md
 rg -q 'Submission Readiness' README.md docs/submission-readiness.md
 rg -q 'Comparison With Existing Solutions' README.md
 rg -q 'Demo Video Script' docs/demo-video-script.md
+rg -q 'DoraHacks Submission Draft' docs/dorahacks-submission-draft.md
 rg -q 'TypeScript RWA oracle agent' agent-backend/README.md
 rg -q 'mcp:check' README.md agent-backend/package.json
 rg -q 'CSPR.trade MCP' README.md docs/submission-readiness.md agent-backend/src/mcp-smoke.ts
@@ -119,6 +121,7 @@ rg -q 'DataFeed' docs/project-guide.md DESIGN_TRADEOFFS.md
 rg -q 'ReputationScore' docs/project-guide.md DESIGN_TRADEOFFS.md
 rg -q 'Working prototype deployed on Casper Testnet' docs/official-rules.md
 rg -q 'x402' docs/resources.md skills/casper-buildathon-rwa-loop/SKILL.md
+rg -q 'make verify' skills/casper-buildathon-rwa-loop/SKILL.md docs/dorahacks-submission-draft.md
 rg -q 'PAYMENT-REQUIRED' docs/phase-4-x402.md oracle-server/README.md
 rg -q 'PAYMENT_SIGNED' docs/phase-4-x402.md checkpoints/checkpoint-04-phase-4-x402.md
 rg -q 'PAYMENT_REQUIRED' README.md docs/demo-video-script.md

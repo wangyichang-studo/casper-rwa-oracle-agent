@@ -68,3 +68,5 @@ Status timestamp: 2026-06-07 00:35 CST.
 - Optional project social link for the long-term launch plan section.
 
 When these values exist, run `node scripts/fill-submission-artifacts.mjs` to update README and this readiness file without hand-editing final links.
+
+Use `docs/dorahacks-submission-draft.md` as the working copy for the final BUIDL form text.

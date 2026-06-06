@@ -127,4 +127,6 @@
   - `scripts/final-verify.sh`
   - `CONTRIBUTING.md`
   - `scripts/fill-submission-artifacts.mjs`
+  - `docs/dorahacks-submission-draft.md`
+  - final verification instructions in `skills/casper-buildathon-rwa-loop/SKILL.md`
 - Kept CSPR.trade MCP non-blocking: the smoke script exits cleanly when no local MCP bridge is configured and becomes a real `get_tokens` check when a bridge module is provided.

@@ -146,6 +146,8 @@ Demo script: `docs/demo-video-script.md`
 
 Public video URL: pending recording and upload before DoraHacks submission.
 
+DoraHacks submission draft: `docs/dorahacks-submission-draft.md`
+
 Recommended qualification demo path:
 
 1. Show this README and architecture diagram.
