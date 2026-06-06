@@ -130,3 +130,4 @@ The gate covers:
 - Run `scripts/fill-submission-artifacts.mjs` with the final public URLs and hashes.
 - Re-run `make verify` before final DoraHacks submission.
 - Run `make submission-check` and confirm it passes before pressing submit.
+- Optional: run `make export-package` to produce a clean source archive/manifest from the final commit.

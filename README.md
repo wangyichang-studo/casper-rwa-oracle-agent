@@ -102,6 +102,12 @@ Capture local HTTP x402 evidence for demo recording:
 make demo-evidence
 ```
 
+Export a clean source package from the current git commit:
+
+```bash
+make export-package
+```
+
 After public repo/video/Testnet artifacts exist, fill the final submission links:
 
 ```bash

@@ -1,4 +1,4 @@
-.PHONY: verify scaffold-check contract-test contract-build deploy-check agent-test agent-build agent-demo mcp-check oracle-test demo-evidence diff-check fill-artifacts-dry-run submission-check
+.PHONY: verify scaffold-check contract-test contract-build deploy-check agent-test agent-build agent-demo mcp-check oracle-test demo-evidence diff-check fill-artifacts-dry-run submission-check export-package
 
 verify:
 	./scripts/final-verify.sh
@@ -41,3 +41,6 @@ fill-artifacts-dry-run:
 
 submission-check:
 	node scripts/check-submission-ready.mjs
+
+export-package:
+	./scripts/export-submission-package.sh

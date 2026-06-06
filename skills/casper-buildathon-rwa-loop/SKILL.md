@@ -84,6 +84,12 @@ make submission-check
 
 This strict gate is expected to fail until the public repository URL, public demo video URL, Testnet contract package hash, and sample deploy hash are filled.
 
+For a clean source archive/manifest from the final commit, run:
+
+```bash
+make export-package
+```
+
 ## External Blockers
 
 Do not invent these values:

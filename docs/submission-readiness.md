@@ -72,3 +72,5 @@ When these values exist, run `node scripts/fill-submission-artifacts.mjs` to upd
 Use `docs/dorahacks-submission-draft.md` as the working copy for the final BUIDL form text.
 
 Run `make submission-check` after filling final links. It is expected to fail while public repo/video/Testnet hashes are still pending.
+
+Run `make export-package` after committing final changes if a clean source archive/manifest is useful for review or backup.

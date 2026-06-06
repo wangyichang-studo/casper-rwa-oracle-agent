@@ -30,6 +30,14 @@ The full gate runs scaffold checks, Odra tests, WASM build, livenet deploy binar
 
 For smaller loops, use specific Make targets such as `make contract-test`, `make agent-test`, `make agent-demo`, or `make oracle-test`.
 
+Export a clean source archive from the current commit:
+
+```bash
+make export-package
+```
+
+The export uses `git archive HEAD`, so ignored local files and secrets are not included.
+
 ## Filling Final Submission Links
 
 After the public repository, demo video, and live Testnet hashes exist, update the final docs with:

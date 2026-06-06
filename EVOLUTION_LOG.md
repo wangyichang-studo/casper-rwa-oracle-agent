@@ -131,4 +131,5 @@
   - final verification instructions in `skills/casper-buildathon-rwa-loop/SKILL.md`
   - `scripts/capture-demo-evidence.sh` and `make demo-evidence` for local HTTP x402 recording evidence
   - `scripts/check-submission-ready.mjs` and `make submission-check` as the strict final DoraHacks gate
+  - `scripts/export-submission-package.sh` and `make export-package` for clean tracked-source archive export
 - Kept CSPR.trade MCP non-blocking: the smoke script exits cleanly when no local MCP bridge is configured and becomes a real `get_tokens` check when a bridge module is provided.

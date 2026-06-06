@@ -31,6 +31,7 @@ Phase 5: documentation, demo packaging, final safety checks, and submission read
 - Added `docs/dorahacks-submission-draft.md` as the BUIDL form working copy and updated the project skill with final verification/submission steps.
 - Added `scripts/capture-demo-evidence.sh` and `make demo-evidence` to capture the local HTTP x402 evidence package used for demo recording.
 - Added `scripts/check-submission-ready.mjs` and `make submission-check` as the strict final gate that fails until public repo/video/Testnet evidence is filled.
+- Added `scripts/export-submission-package.sh` and `make export-package` to create a clean tracked-source archive/manifest from the current commit.
 
 ## Self-Review Against Buildathon Requirements
 
@@ -89,6 +90,12 @@ make submission-check
 Result: expected failure while public repo/video/Testnet hashes are still pending.
 
 ```bash
+scripts/export-submission-package.sh --allow-dirty --output-dir tmp/export-smoke
+```
+
+Result: source package export smoke test passed.
+
+```bash
 make fill-artifacts-dry-run
 ```
 
@@ -129,7 +136,7 @@ Result: local HTTP x402 integration passed; the agent received a real local `402
 ./scripts/verify-phase0.sh
 ```
 
-Result: `Scaffold verification passed: 73 required paths present, no secret-like files, no placeholders.`
+Result: `Scaffold verification passed: 74 required paths present, no secret-like files, no placeholders.`
 
 ```bash
 git diff --check
