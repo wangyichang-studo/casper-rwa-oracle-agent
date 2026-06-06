@@ -6,10 +6,9 @@ This is a Phase 0 outline only. Final video script will be written after deploye
 
 ## Flow
 
-1. Problem: RWA onboarding needs compliance checks without exposing private KYC data on-chain.
-2. Product: Casper RWA Compliance Agent evaluates cases, buys evidence via x402, and records privacy-preserving decisions on Casper.
-3. Agent run: show a synthetic case, evidence request, risk score, and decision.
+1. Problem: RWA markets need trusted, timely off-chain data without forcing raw evidence or sensitive files onto the chain.
+2. Product: Casper RWA Oracle Agent gathers data, buys evidence via x402, scores risk/confidence, and publishes verified oracle data plus reputation updates on Casper.
+3. Agent run: show a synthetic asset case, evidence request, risk score, confidence score, and published value.
 4. x402: show `402 Payment Required`, signed retry, and evidence response.
-5. Casper Testnet: show deployed `ComplianceRegistry`, transaction hash, and query result.
-6. Roadmap: real KYC providers, verifiable credentials, ERC-3643/T-REX style compliance integration, and Casper ecosystem launch path.
-
+5. Casper Testnet: show deployed oracle registry/data feed/reputation modules, transaction hash, and query result.
+6. Roadmap: real RWA data providers, verifiable credentials, reputation-weighted oracle networks, and Casper ecosystem launch path.

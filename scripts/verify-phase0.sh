@@ -3,6 +3,8 @@ set -euo pipefail
 
 required_paths=(
   ".gitignore"
+  "DESIGN_TRADEOFFS.md"
+  "EVOLUTION_LOG.md"
   "README.md"
   "agent-backend/.gitkeep"
   "contracts/.gitkeep"
@@ -14,6 +16,7 @@ required_paths=(
   "checkpoints/checkpoint-00-phase-0-scaffold.md"
   "manus_outbox/checkpoint-00-submit.md"
   "manus_feedback/feedback_log.md"
+  "manus_feedback/Manus 反馈 — Checkpoint 00.md"
   "scripts/verify-phase0.sh"
   "skills/casper-buildathon-rwa-loop/SKILL.md"
   "skills/casper-buildathon-rwa-loop/agents/openai.yaml"
@@ -45,7 +48,10 @@ if rg -n '\b(TBD|TODO|FILL_ME|CHANGE_ME)\b' README.md docs checkpoints manus_out
 fi
 
 rg -q 'Casper Innovation Track' docs/official-rules.md
-rg -q 'RWA Compliance Agent' README.md docs/project-guide.md
+rg -q 'RWA Oracle Agent' README.md docs/project-guide.md skills/casper-buildathon-rwa-loop/SKILL.md
+rg -q 'OracleRegistry' docs/project-guide.md DESIGN_TRADEOFFS.md
+rg -q 'DataFeed' docs/project-guide.md DESIGN_TRADEOFFS.md
+rg -q 'ReputationScore' docs/project-guide.md DESIGN_TRADEOFFS.md
 rg -q 'Working prototype deployed on Casper Testnet' docs/official-rules.md
 rg -q 'x402' docs/resources.md skills/casper-buildathon-rwa-loop/SKILL.md
 rg -q 'Manus' checkpoints/checkpoint-00-phase-0-scaffold.md manus_outbox/checkpoint-00-submit.md

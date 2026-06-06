@@ -1,6 +1,6 @@
 # Codex Closed-Loop Development Guide
 
-This guide replaces the downloaded yield-routing plan with the selected RWA compliance concept.
+This guide replaces the downloaded yield-routing plan with the selected RWA oracle concept, following Manus Checkpoint 00 guidance.
 
 ## Closed-Loop Protocol
 
@@ -16,30 +16,31 @@ Codex must work one phase at a time:
 
 ## Product Concept
 
-Build a Casper RWA Compliance Agent:
+Build a Casper RWA Oracle Agent:
 
-- Synthetic asset and investor cases are loaded locally.
-- The agent evaluates RWA/KYC/AML policy rules.
-- The agent obtains or verifies external evidence through x402.
-- The agent records only privacy-preserving results on-chain:
-  - asset or case identifier
-  - compliance status
-  - risk score
+- Synthetic RWA market and asset cases are loaded locally.
+- The agent gathers or verifies external evidence through x402.
+- The agent runs a risk, valuation, and confidence scoring model.
+- The agent publishes privacy-preserving oracle outputs on-chain:
+  - oracle identity
+  - asset identifier
+  - estimated value
+  - timestamp
+  - confidence score
   - evidence hash
-  - expiry timestamp
-  - audit note hash
-- The agent never writes raw KYC documents or personally identifying data to Casper.
+  - reputation impact
+- The agent never writes raw private asset files, personal documents, or API secrets to Casper.
 
 ## Current Architecture Target
 
 ```mermaid
 flowchart TD
-  Intake["Synthetic RWA/KYC Case"] --> Agent["TypeScript Compliance Agent"]
-  Agent --> Rules["Policy Rules"]
+  Intake["Synthetic RWA Market Case"] --> Agent["TypeScript RWA Oracle Agent"]
+  Agent --> Rules["Risk and Confidence Model"]
   Agent --> Evidence["x402 Evidence Oracle"]
   Evidence --> Facilitator["CSPR.cloud Facilitator or Local x402 Fallback"]
   Agent --> Deploy["Signed Casper Transaction"]
-  Deploy --> Registry["Odra ComplianceRegistry Contract"]
+  Deploy --> Registry["OracleRegistry + DataFeed + ReputationScore"]
   Registry --> Audit["CSPR.cloud / CSPR.live Audit Trail"]
 ```
 
@@ -54,18 +55,17 @@ flowchart TD
 
 ### Phase 1: Casper/Odra Contract
 
-- Create `ComplianceRegistry`.
-- Implement owner and approved-agent permissions.
-- Add case registration, assessment recording, revocation, and read methods.
-- Test all permission and status behaviors with Odra.
+- Create Odra modules for `OracleRegistry`, `DataFeed`, and `ReputationScore`.
+- Implement oracle registration, registered-oracle data publishing, latest/history reads, and reputation/slash operations.
+- Test duplicate registration, registered publishing, unregistered publishing rejection, reputation updates, and slash behavior.
 
 ### Phase 2: Agent and Compliance Workflow
 
 - Create a TypeScript backend.
-- Load synthetic RWA cases.
-- Evaluate rules and request evidence.
+- Load synthetic RWA market and asset cases.
+- Evaluate risk/confidence rules and request evidence.
 - Produce explainable decisions.
-- Submit transaction-generating workflows using local key material only.
+- Submit oracle data and reputation workflows using local key material only.
 
 ### Phase 3: x402 Evidence Service
 
@@ -76,17 +76,17 @@ flowchart TD
 
 ### Phase 4: Demo, Docs, and Submission
 
-- Final README with setup, contract hash, transaction hashes, and demo walkthrough.
+- Final README with setup, contract hashes, transaction hashes, and demo walkthrough.
 - Public demo video script.
 - Security review and secret scan.
 - GitHub remote/push after user provides repository URL.
 
 ## Mandatory Safety Rules
 
-- Do not commit `.env`, API keys, PEM files, wallet keys, or raw KYC data.
+- Do not commit `.env`, API keys, PEM files, wallet keys, or raw private asset/KYC data.
 - Do not send private keys to an LLM, remote MCP server, or Manus.
 - Treat DoraHacks CAPTCHA and website protections as human-only steps.
-- Use CSPR.trade only as optional ecosystem smoke test; this RWA project is not a trading bot.
+- Use CSPR.trade only as optional ecosystem smoke test; this RWA oracle project is not a trading bot.
 
 ## Authoritative Resources
 
@@ -98,4 +98,3 @@ flowchart TD
 - CSPR.trade MCP: https://mcp.cspr.trade/SKILL.md
 - Odra LLM docs index: https://odra.dev/llms.txt
 - Casper GitHub: https://github.com/casper-network
-

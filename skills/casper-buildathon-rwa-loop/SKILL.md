@@ -1,11 +1,11 @@
 ---
 name: casper-buildathon-rwa-loop
-description: Use when working on the Casper Agentic Buildathon RWA Compliance Agent project, including phase gating, Manus checkpoint reports, Casper AI Toolkit usage, Odra contracts, x402 evidence flows, CSPR.cloud verification, and DoraHacks submission readiness.
+description: Use when working on the Casper Agentic Buildathon RWA Oracle Agent project, including phase gating, Manus checkpoint reports, Casper AI Toolkit usage, Odra contracts, x402 evidence flows, CSPR.cloud verification, and DoraHacks submission readiness.
 ---
 
 # Casper Buildathon RWA Loop
 
-Use this project skill for the Casper RWA Compliance Agent buildathon repo.
+Use this project skill for the Casper RWA Oracle Agent buildathon repo.
 
 ## Hard Phase Gate
 
@@ -23,13 +23,13 @@ For each phase:
 
 ## Current Product Direction
 
-Build an RWA/KYC compliance agent on Casper:
+Build an RWA oracle agent on Casper:
 
-- Agent evaluates synthetic RWA investor and asset cases.
-- Agent obtains paid risk evidence through x402.
-- Agent records privacy-preserving compliance decisions on Casper Testnet.
-- Contract stores status, risk score, evidence hash, expiry, and audit metadata.
-- Raw KYC documents and private personal data stay off-chain and out of the repository.
+- Agent evaluates synthetic RWA asset and market data cases.
+- Agent obtains paid risk or valuation evidence through x402.
+- Agent records privacy-preserving oracle data and reputation updates on Casper Testnet.
+- Contract modules store oracle identity, data points, confidence, evidence hash, and reputation metadata.
+- Raw private asset documents, KYC documents, and personal data stay off-chain and out of the repository.
 
 ## Official Buildathon Requirements
 
@@ -62,4 +62,3 @@ Do not commit:
 - real personal identity documents
 
 Use placeholders and environment variables in all docs and code.
-

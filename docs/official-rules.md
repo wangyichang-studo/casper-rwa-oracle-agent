@@ -84,5 +84,4 @@ The workshop and ongoing support cover:
 3. Multi-agent DAO governance and execution system.
 4. Knowledge-based AI-driven compliance and KYC workflow for DeFi/RWA.
 
-This project intentionally selects direction 4 and adapts it into an RWA compliance agent that avoids putting raw personal data on-chain.
-
+This project initially explored direction 4, then after Manus review pivoted to direction 2: an RWA oracle agent with verifiable on-chain identity and reputation. The implementation still preserves privacy by keeping raw off-chain evidence out of contract state.
