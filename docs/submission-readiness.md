@@ -8,7 +8,7 @@ Status timestamp: 2026-06-07 00:35 CST.
 | --- | --- | --- | --- |
 | Open-source repository contents | ✅ Ready locally | ⏳ Pending public remote | Create public GitHub/GitLab/Bitbucket repo and push. |
 | README with usage instructions | ✅ Ready locally | ✅ Ready for public repo | Add live contract/video links after they exist. |
-| Working prototype | ✅ Tests and mock demo pass | ✅ Local prototype can be reviewed | Run the demo commands during video recording. |
+| Working prototype | ✅ `make verify` passes | ✅ Local prototype can be reviewed | Run the demo commands during video recording. |
 | Casper Testnet prototype path | ✅ Deploy/register/publish runner implemented | ⏳ Pending live deployment | Provide funded Testnet key and run the livenet deploy command. |
 | Transaction-generating on-chain component | ✅ Odra tests, WASM build, and livenet deploy binary check pass | ⏳ Pending live contract/deploy hash | Record contract package hash and sample deploy hash after deployment. |
 | x402 paid evidence flow | ✅ Mock/reference and local HTTP modes pass | ✅ Mock/reference mode is demo-ready | Optional: configure live facilitator credentials before recording. |

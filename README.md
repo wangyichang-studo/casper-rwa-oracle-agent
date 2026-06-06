@@ -90,6 +90,12 @@ cd agent-backend
 X402_ORACLE_BASE_URL=http://127.0.0.1:3002 npm run agent:mock
 ```
 
+Run the full local qualification gate:
+
+```bash
+make verify
+```
+
 Expected terminal story:
 
 1. The agent loads synthetic RWA cases.
@@ -164,6 +170,7 @@ Latest local gates:
 - `cd agent-backend && npm run build`: passed
 - `cd agent-backend && npm run mcp:check`: passed with graceful CSPR.trade MCP unavailable notice
 - `cd oracle-server && npm test`: 3 tests passed
+- `make verify`: full local qualification gate passed
 - `./scripts/verify-phase0.sh`: structure and secret scan passed
 
 Live external blockers:

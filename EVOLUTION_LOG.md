@@ -122,4 +122,8 @@
   - added `agent-backend/src/mcp-smoke.ts` and `npm run mcp:check`
   - split `docs/submission-readiness.md` into local status, public status, and human action columns
   - added a README comparison section for real-world applicability
+- Added post-approval final polish:
+  - root `Makefile`
+  - `scripts/final-verify.sh`
+  - `CONTRIBUTING.md`
 - Kept CSPR.trade MCP non-blocking: the smoke script exits cleanly when no local MCP bridge is configured and becomes a real `get_tokens` check when a bridge module is provided.

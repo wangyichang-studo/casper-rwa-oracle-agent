@@ -26,6 +26,7 @@ Phase 5: documentation, demo packaging, final safety checks, and submission read
 - Added `LICENSE` with MIT terms.
 - Updated `scripts/verify-phase0.sh` to require Phase 5 docs, the license, README sections, `.gitignore` safety patterns, and demo-script evidence.
 - After Manus final review, added the optional P1 MCP smoke script and split the submission-readiness table into local status, public submission status, and human action columns.
+- Added the optional Makefile polish and a credential-free `make verify` final gate.
 
 ## Self-Review Against Buildathon Requirements
 
@@ -66,6 +67,12 @@ PATH=/Users/wangyichang/.rustup/toolchains/nightly-aarch64-apple-darwin/bin:/Use
 Result: passed.
 
 ```bash
+make verify
+```
+
+Result: full local qualification gate passed.
+
+```bash
 cd agent-backend
 npm test
 npm run build
@@ -100,7 +107,7 @@ Result: local HTTP x402 integration passed; the agent received a real local `402
 ./scripts/verify-phase0.sh
 ```
 
-Result: `Scaffold verification passed: 66 required paths present, no secret-like files, no placeholders.`
+Result: `Scaffold verification passed: 69 required paths present, no secret-like files, no placeholders.`
 
 ```bash
 git diff --check

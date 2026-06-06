@@ -3,9 +3,11 @@ set -euo pipefail
 
 required_paths=(
   ".gitignore"
+  "CONTRIBUTING.md"
   "DESIGN_TRADEOFFS.md"
   "EVOLUTION_LOG.md"
   "LICENSE"
+  "Makefile"
   "README.md"
   "agent-backend/package.json"
   "agent-backend/package-lock.json"
@@ -65,6 +67,7 @@ required_paths=(
   "manus_feedback/feedback_log.md"
   "manus_feedback/Manus 反馈 — Checkpoint 00.md"
   "manus_feedback/Manus 反馈 — Checkpoint 05.md"
+  "scripts/final-verify.sh"
   "scripts/verify-phase0.sh"
   "skills/casper-buildathon-rwa-loop/SKILL.md"
   "skills/casper-buildathon-rwa-loop/agents/openai.yaml"
@@ -96,6 +99,8 @@ if rg -n '\b(TBD|TODO|FILL_ME|CHANGE_ME)\b' README.md docs checkpoints manus_out
 fi
 
 rg -q 'Casper Innovation Track' docs/official-rules.md
+rg -q '^verify:' Makefile
+rg -q 'make verify' README.md CONTRIBUTING.md
 rg -q 'RWA Oracle Agent' README.md docs/project-guide.md skills/casper-buildathon-rwa-loop/SKILL.md
 rg -q 'Casper AI Toolkit Usage' README.md
 rg -q 'Submission Readiness' README.md docs/submission-readiness.md
@@ -104,6 +109,7 @@ rg -q 'Demo Video Script' docs/demo-video-script.md
 rg -q 'TypeScript RWA oracle agent' agent-backend/README.md
 rg -q 'mcp:check' README.md agent-backend/package.json
 rg -q 'CSPR.trade MCP' README.md docs/submission-readiness.md agent-backend/src/mcp-smoke.ts
+rg -qi 'final verification' scripts/final-verify.sh
 rg -q 'OracleRegistry' docs/project-guide.md DESIGN_TRADEOFFS.md
 rg -q 'DataFeed' docs/project-guide.md DESIGN_TRADEOFFS.md
 rg -q 'ReputationScore' docs/project-guide.md DESIGN_TRADEOFFS.md

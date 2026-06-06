@@ -224,3 +224,22 @@ Mitigation:
 
 - `npm run mcp:check` exits successfully when no MCP bridge is configured.
 - If a bridge module is provided through `CSPR_TRADE_MCP_MODULE`, the command calls `get_tokens` and logs a redacted token summary.
+
+## Single Make Verify Gate
+
+Decision: add a root `Makefile` and `scripts/final-verify.sh` after Manus' final review.
+
+Why:
+
+- Manus suggested a Makefile as a non-blocking technical execution polish item.
+- The project now has Rust, TypeScript, HTTP x402, MCP smoke, docs, and git hygiene checks spread across multiple directories.
+- Reviewers and future contributors need one command that proves the local qualification package still works.
+
+Tradeoff:
+
+- `make verify` is slower than targeted tests because it also rebuilds WASM and reruns the mock demo.
+
+Mitigation:
+
+- Keep focused Make targets for smaller loops.
+- Keep the full gate credential-free so it never requires private keys or live Testnet material.
