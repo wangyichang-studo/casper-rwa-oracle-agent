@@ -15,7 +15,7 @@ The project will build an autonomous oracle agent that gathers synthetic off-cha
 
 ## Current Phase
 
-Phase 0 passed Manus review. Manus requested a pivot from pure KYC/compliance to **RWA Oracle Agent with Verifiable On-Chain Identity**. Phase 1 now targets local Odra contract modules and tests.
+Phase 1 passed Manus review. The Odra contract crate now includes `RwaOracle`, covering oracle registration, data publication, evidence hashes, latest/history reads, reputation updates, owner-controlled slashing, and owner-controlled oracle pause.
 
 ## Planned Architecture
 
@@ -32,6 +32,7 @@ flowchart LR
 ## Repository Layout
 
 - `contracts/`: Odra smart contract workspace planned for oracle registry, data feed, and reputation modules
+  - `contracts/rwa-oracle/`: Phase 1 Odra contract crate and unit tests
 - `agent-backend/`: TypeScript oracle agent planned for RWA data evaluation and transaction submission
 - `oracle-server/`: x402 evidence oracle planned for paid RWA risk and market evidence
 - `docs/`: official rules, implementation guide, resources, and demo planning
@@ -43,3 +44,16 @@ flowchart LR
 ## Secret Handling
 
 Do not commit private keys, API keys, CSPR.cloud tokens, `.env` files, or raw private asset documents. Final implementation will use environment variables and local key paths only.
+
+## Phase 1 Contract Verification
+
+The Odra crate uses nightly Rust because `odra-macros 2.7.2` currently requires a nightly feature. The contract crate includes `contracts/rwa-oracle/rust-toolchain.toml`.
+
+Run:
+
+```bash
+cd contracts/rwa-oracle
+cargo odra test
+```
+
+Latest local result: 6 tests passed for duplicate registration rejection, registered publish success with evidence hash, unregistered publish rejection, reputation/slash behavior, newest-first history reads, and paused-oracle publish rejection.

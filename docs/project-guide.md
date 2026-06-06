@@ -58,6 +58,7 @@ flowchart TD
 - Create Odra modules for `OracleRegistry`, `DataFeed`, and `ReputationScore`.
 - Implement oracle registration, registered-oracle data publishing, latest/history reads, and reputation/slash operations.
 - Test duplicate registration, registered publishing, unregistered publishing rejection, reputation updates, and slash behavior.
+- Status: passed Manus Checkpoint 01. Manus requested and Codex implemented `evidence_hash` plus owner-only `pause_oracle` before Phase 2.
 
 ### Phase 2: Agent and Compliance Workflow
 
