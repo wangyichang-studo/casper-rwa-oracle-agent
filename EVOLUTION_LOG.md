@@ -71,3 +71,14 @@
 - Tried app activation, Cmd+N, quit/reopen, and direct activation without restoring a window.
 - No Manus approval is claimed for Checkpoint 03.
 - Resume by sending the existing outbox when Manus UI recovers.
+
+## 2026-06-06 - Checkpoint 03 Verification Refreshed
+
+- Refreshed Phase 3 verification before resubmitting to Manus:
+  - `npm test`: 8 tests passed.
+  - `npm run build`: passed.
+  - `npm run agent:mock`: passed with perception, evidence, decision, unsigned deploy JSON, mock transaction hashes, and summary logs.
+  - `./scripts/verify-phase0.sh`: passed.
+  - `git diff --check`: passed.
+- Manus UI is available again, but the final send action is waiting for the user-required Computer Use confirmation for representational communication.
+- No Manus approval is claimed for Checkpoint 03 until the outbox is actually sent and feedback is saved.
