@@ -19,6 +19,8 @@ keys/
 logs/
 tmp/
 *.log
+demo/*.mp4
+demo/*.mov
 
 # Local worktrees and editor state
 .worktrees/
