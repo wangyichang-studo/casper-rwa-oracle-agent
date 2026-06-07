@@ -159,3 +159,20 @@
   - register transaction `d273321dd62a736d33b2367e04e6e27ad49960777adbdbd283b0bf43b10d4490`
   - publish transaction `dd62fd512ad9f95b4a6522316208d9be890614c31df20d1f5d4aa969daae251b`
 - Remaining external submission work is now public repository creation/push and public demo video upload.
+
+## 2026-06-07 - Checkpoint 07 Manus Review
+
+- Checkpoint 07 was delivered through the Manus desktop UI after the user confirmed automatic sending.
+- Manus approved the live Testnet deployment checkpoint.
+- Manus confirmed the three real chain transactions satisfy the buildathon on-chain requirement:
+  - deployed smart contract
+  - oracle registration transaction
+  - data publish transaction
+- Manus confirmed the docs are honest by marking live Testnet evidence complete while keeping public repo/video as pending.
+- Manus recommended the final demo sequence:
+  - lead with the autonomous agent/x402 decision loop
+  - close with CSPR.live Testnet proof
+- Remaining public submission work:
+  - push to public GitHub/GitLab/Bitbucket repository
+  - record and upload demo video
+  - fill final public URLs and rerun `make submission-check`
