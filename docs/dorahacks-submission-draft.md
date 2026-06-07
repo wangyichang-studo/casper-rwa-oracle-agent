@@ -68,23 +68,8 @@ Pending public demo video URL. Use `docs/demo-video-script.md` for the 3-5 minut
 
 ## Testnet Contract Evidence
 
-Pending live Testnet deployment.
-
-When the Testnet key and funded account are available:
-
-```bash
-cd contracts/rwa-oracle
-DYLD_LIBRARY_PATH="$(rustc --print sysroot)/lib" cargo odra build -c RwaOracle
-cargo run --bin deploy --features livenet
-```
-
-Then run:
-
-```bash
-node scripts/fill-submission-artifacts.mjs \
-  --contract-package-hash hash-YOUR_CONTRACT_PACKAGE_HASH \
-  --deploy-hash YOUR_SAMPLE_DEPLOY_HASH
-```
+- Contract package: [hash-8c5d2f16c0a552f95e92ab9a5efcac562dca17abb05db9359bfda270e3659cd8](https://testnet.cspr.live/contract-package/hash-8c5d2f16c0a552f95e92ab9a5efcac562dca17abb05db9359bfda270e3659cd8)
+- Sample deploy: [dd62fd512ad9f95b4a6522316208d9be890614c31df20d1f5d4aa969daae251b](https://testnet.cspr.live/deploy/dd62fd512ad9f95b4a6522316208d9be890614c31df20d1f5d4aa969daae251b)
 
 ## Local Verification Evidence
 
@@ -126,9 +111,6 @@ The gate covers:
 ## Remaining Submission Actions
 
 - Create and push to a public GitHub/GitLab/Bitbucket repository.
-- Provide Casper Testnet key material and a funded account for live deployment.
 - Record and upload the public demo video.
-- Run `scripts/fill-submission-artifacts.mjs` with the final public URLs and hashes.
 - Re-run `make verify` before final DoraHacks submission.
 - Run `make submission-check` and confirm it passes before pressing submit.
-- Optional: run `make export-package` to produce a clean source archive/manifest from the final commit.

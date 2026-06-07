@@ -145,3 +145,17 @@
   - GitHub remote URL and push
   - funded Casper Testnet key material and live deploy hash
   - public demo video URL
+
+## 2026-06-07 - Live Testnet Deployment Complete
+
+- User provided a local Casper wallet export and CSPR.cloud API key. The API key remains uncommitted and is reserved for future CSPR.cloud/x402 work.
+- Extracted the wallet key into the ignored local `contracts/rwa-oracle/keys/` path for deployment only.
+- Derived deployed signer public key `020399f41243f45e505e1cacef3e1e40f7b6ad8cbba2d070a9fa6219beedc8ee2e00` and account hash `account-hash-341bdc1af1a371921c41558795c780827bb3b37ef4afb79882e5d32a48548cad`.
+- First live deploy attempt submitted but failed out-of-gas at transaction `f3586938855b1b0665cfbf0ad183ba118f89c7bf595b2573f8798b84d7c9ad11`.
+- Retried with `800_000_000_000` deploy gas after confirming higher gas exceeded the Testnet block gas limit.
+- Successful contract package: `hash-8c5d2f16c0a552f95e92ab9a5efcac562dca17abb05db9359bfda270e3659cd8`.
+- Successful live chain workflow:
+  - deploy transaction `0a9a512e55ceef1ca202ba35d0f0940c78d3fbbfed751d44bfabb8b89b3593d0`
+  - register transaction `d273321dd62a736d33b2367e04e6e27ad49960777adbdbd283b0bf43b10d4490`
+  - publish transaction `dd62fd512ad9f95b4a6522316208d9be890614c31df20d1f5d4aa969daae251b`
+- Remaining external submission work is now public repository creation/push and public demo video upload.

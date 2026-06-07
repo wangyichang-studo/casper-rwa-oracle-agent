@@ -145,8 +145,10 @@ Expected terminal story:
 - Contract: `contracts/rwa-oracle`
 - Module: `RwaOracle`
 - Network: `casper-test`
-- Contract package hash: pending live Testnet deployment
+- Contract package hash: `hash-8c5d2f16c0a552f95e92ab9a5efcac562dca17abb05db9359bfda270e3659cd8`
 - Explorer base: [CSPR.live Testnet](https://testnet.cspr.live/)
+- Contract explorer: [CSPR.live contract package](https://testnet.cspr.live/contract-package/hash-8c5d2f16c0a552f95e92ab9a5efcac562dca17abb05db9359bfda270e3659cd8)
+- Sample deploy: [CSPR.live deploy](https://testnet.cspr.live/deploy/dd62fd512ad9f95b4a6522316208d9be890614c31df20d1f5d4aa969daae251b)
 
 The livenet deployment path is implemented in `contracts/rwa-oracle/src/bin/deploy.rs` and documented in `docs/phase-2-deployment.md`.
 
@@ -212,14 +214,14 @@ Latest local gates:
 - `make fill-artifacts-dry-run`: final artifact fill script dry run passed
 - `./scripts/verify-phase0.sh`: structure and secret scan passed
 
-Live external blockers:
+Remaining external blockers:
 
-- local `contracts/rwa-oracle/keys/secret_key.pem` for the verified funded Testnet account
-- deployed contract package hash
+- public GitHub/GitLab/Bitbucket repository URL
+- public demo video URL
 - CSPR.cloud x402 facilitator authorization token
 - real Casper EIP-712 payment signing material
 
-`make submission-check` intentionally fails until the public repository URL, public demo video URL, Testnet contract package hash, and sample deploy hash are filled.
+`make submission-check` intentionally fails until the public repository URL and public demo video URL are filled.
 
 ## Submission Readiness
 
@@ -231,7 +233,7 @@ Must-have artifacts for DoraHacks:
 - ✅ README with usage instructions
 - ✅ Working local prototype and tests
 - ✅ Transaction-generating Casper Testnet deploy path
-- ⏳ Live Testnet contract hash after key material is provided
+- ✅ Live Testnet contract hash
 - ⏳ Public GitHub/GitLab/Bitbucket remote URL
 - ⏳ Public demo video URL
 
@@ -241,7 +243,7 @@ Most RWA compliance and oracle workflows are manually reviewed, centralized, or 
 
 ## Future Roadmap
 
-- Q3 2026: complete live Casper Testnet deployment, publish transaction hashes, and wire real CSPR.cloud x402 facilitator settlement.
+- Q3 2026: expand live Casper Testnet publishing from the Odra deploy runner into the TypeScript agent and wire real CSPR.cloud x402 facilitator settlement.
 - Q3 2026: add CSPR.trade MCP enrichment for on-chain DeFi context around RWA risk decisions.
 - Q4 2026: launch a multi-oracle reputation network with owner/governance controls.
 - Q4 2026: add verifiable credential and compliance attestations without storing raw KYC files on-chain.

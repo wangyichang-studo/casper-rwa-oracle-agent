@@ -1,6 +1,6 @@
 # Submission Readiness
 
-Status timestamp: 2026-06-07 00:35 CST.
+Status timestamp: 2026-06-07 22:20 CST.
 
 ## Required DoraHacks Artifacts
 
@@ -9,19 +9,20 @@ Status timestamp: 2026-06-07 00:35 CST.
 | Open-source repository contents | ✅ Ready locally | ⏳ Pending public remote | Create public GitHub/GitLab/Bitbucket repo and push. |
 | README with usage instructions | ✅ Ready locally | ✅ Ready for public repo | Add live contract/video links after they exist. |
 | Working prototype | ✅ `make verify` passes | ✅ Local prototype can be reviewed | Run the demo commands during video recording. |
-| Casper Testnet prototype path | ✅ Deploy/register/publish runner implemented | ⏳ Pending live deployment | Provide funded Testnet key and run the livenet deploy command. |
-| Transaction-generating on-chain component | ✅ Odra tests, WASM build, and livenet deploy binary check pass | ⏳ Pending live contract/deploy hash | Record contract package hash and sample deploy hash after deployment. |
+| Casper Testnet prototype path | ✅ Deploy/register/publish runner implemented | ✅ Contract package: [hash-8c5d2f16c0a552f95e92ab9a5efcac562dca17abb05db9359bfda270e3659cd8](https://testnet.cspr.live/contract-package/hash-8c5d2f16c0a552f95e92ab9a5efcac562dca17abb05db9359bfda270e3659cd8) | Keep Testnet account funded for any re-demo. |
+| Transaction-generating on-chain component | ✅ Odra tests, WASM build, and livenet deploy binary check pass | ✅ contract [hash-8c5d2f16c0a552f95e92ab9a5efcac562dca17abb05db9359bfda270e3659cd8](https://testnet.cspr.live/contract-package/hash-8c5d2f16c0a552f95e92ab9a5efcac562dca17abb05db9359bfda270e3659cd8), deploy [dd62fd512ad9f95b4a6522316208d9be890614c31df20d1f5d4aa969daae251b](https://testnet.cspr.live/deploy/dd62fd512ad9f95b4a6522316208d9be890614c31df20d1f5d4aa969daae251b) | Preserve deploy logs for final submission evidence. |
 | x402 paid evidence flow | ✅ Mock/reference, local HTTP mode, and demo evidence capture pass | ✅ Mock/reference mode is demo-ready | Optional: configure live facilitator credentials before recording. |
 | CSPR.trade MCP smoke check | ✅ Graceful placeholder command ready | ✅ Non-blocking enrichment path documented | Optional: configure MCP bridge and rerun `npm run mcp:check`. |
 | Public demo video | ✅ Script ready | ⏳ Pending upload | Record and upload a public 3-5 minute demo video. |
 
 ## Verified Testnet Account
 
-- Account: `0202843d288fff484d5f70a847fb239cb428af5c7f66e878cd99b0fdbc29f618adf2`
-- Account hash: `account-hash-5cc1872a3fcdd350bd6f5d5c1f491d1446ed40e0ac727d4431511d1f83af8dc0`
-- Main purse: `uref-6b71adf2446a1f1d48cc97fe440dc35e760a86d26a61843bd0b39bdfc248b5d7-007`
-- Latest checked balance: `5000000000000` motes, about `5000 CSPR`.
-- Deployment blocker remaining: matching local `contracts/rwa-oracle/keys/secret_key.pem`.
+- Deployed signer public key: `020399f41243f45e505e1cacef3e1e40f7b6ad8cbba2d070a9fa6219beedc8ee2e00`
+- Account hash: `account-hash-341bdc1af1a371921c41558795c780827bb3b37ef4afb79882e5d32a48548cad`
+- Main purse: `uref-eac0c0b0a9e6802b7b87a132ba6d0795db27cf3274bd3e294f1b24a9a57a7168-007`
+- Deploy transaction: [`0a9a512e55ceef1ca202ba35d0f0940c78d3fbbfed751d44bfabb8b89b3593d0`](https://testnet.cspr.live/transaction/0a9a512e55ceef1ca202ba35d0f0940c78d3fbbfed751d44bfabb8b89b3593d0)
+- Register transaction: [`d273321dd62a736d33b2367e04e6e27ad49960777adbdbd283b0bf43b10d4490`](https://testnet.cspr.live/transaction/d273321dd62a736d33b2367e04e6e27ad49960777adbdbd283b0bf43b10d4490)
+- Publish transaction: [`dd62fd512ad9f95b4a6522316208d9be890614c31df20d1f5d4aa969daae251b`](https://testnet.cspr.live/transaction/dd62fd512ad9f95b4a6522316208d9be890614c31df20d1f5d4aa969daae251b)
 
 ## Final Safety Checklist
 
@@ -68,19 +69,13 @@ Status timestamp: 2026-06-07 00:35 CST.
 
 ## Remaining External Inputs
 
-- Casper Testnet secret key path for the verified funded account.
-- Contract package hash after live deploy.
 - CSPR.cloud x402 facilitator authorization token if live settlement is recorded.
 - Public repository URL.
 - Public demo video URL.
 - Optional project social link for the long-term launch plan section.
 
-When these values exist, run `node scripts/fill-submission-artifacts.mjs` to update README and this readiness file without hand-editing final links.
-
 Use `docs/dorahacks-submission-draft.md` as the working copy for the final BUIDL form text.
 
-Run `make submission-check` after filling final links. It is expected to fail while public repo/video/Testnet hashes are still pending.
-
-Run `make export-package` after committing final changes if a clean source archive/manifest is useful for review or backup.
+Run `node scripts/fill-submission-artifacts.mjs` after the public repository and public demo video URLs exist. `make submission-check` is expected to fail until those two public URLs are filled.
 
 The repository includes `.github/workflows/ci.yml`; after pushing to a public remote, GitHub Actions should run `make ci` as a portable quick gate.

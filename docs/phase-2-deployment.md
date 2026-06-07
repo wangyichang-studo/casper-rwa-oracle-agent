@@ -49,6 +49,13 @@ cd contracts/rwa-oracle
 cargo run --bin deploy --features livenet
 ```
 
+Optional gas overrides are read from `.env`:
+
+```bash
+RWA_ORACLE_DEPLOY_GAS=800000000000
+RWA_ORACLE_CALL_GAS=150000000000
+```
+
 The deploy runner:
 
 - deploys `RwaOracle`
@@ -56,8 +63,17 @@ The deploy runner:
 - publishes one demo RWA datapoint with an evidence hash
 - prints the caller, network, contract package hash, sample asset id, value, confidence, and evidence hash
 
-## Current Blocker
+## Live Testnet Result
 
-The account `0202843d288fff484d5f70a847fb239cb428af5c7f66e878cd99b0fdbc29f618adf2` is visible on Casper Testnet as `account-hash-5cc1872a3fcdd350bd6f5d5c1f491d1446ed40e0ac727d4431511d1f83af8dc0` and has sufficient faucet CSPR for the demo gas budget.
+Deployment was completed on 2026-06-07 with the local-only wallet key provided by the user.
 
-Live Testnet deployment is blocked only until the matching local Testnet secret key exists at `contracts/rwa-oracle/keys/secret_key.pem`. No private key, `.env`, or PEM file should be committed or sent to Manus.
+- Deployed signer public key: `020399f41243f45e505e1cacef3e1e40f7b6ad8cbba2d070a9fa6219beedc8ee2e00`
+- Account hash: `account-hash-341bdc1af1a371921c41558795c780827bb3b37ef4afb79882e5d32a48548cad`
+- Contract package hash: [`hash-8c5d2f16c0a552f95e92ab9a5efcac562dca17abb05db9359bfda270e3659cd8`](https://testnet.cspr.live/contract-package/hash-8c5d2f16c0a552f95e92ab9a5efcac562dca17abb05db9359bfda270e3659cd8)
+- Deploy transaction: [`0a9a512e55ceef1ca202ba35d0f0940c78d3fbbfed751d44bfabb8b89b3593d0`](https://testnet.cspr.live/transaction/0a9a512e55ceef1ca202ba35d0f0940c78d3fbbfed751d44bfabb8b89b3593d0)
+- Register transaction: [`d273321dd62a736d33b2367e04e6e27ad49960777adbdbd283b0bf43b10d4490`](https://testnet.cspr.live/transaction/d273321dd62a736d33b2367e04e6e27ad49960777adbdbd283b0bf43b10d4490)
+- Publish transaction: [`dd62fd512ad9f95b4a6522316208d9be890614c31df20d1f5d4aa969daae251b`](https://testnet.cspr.live/transaction/dd62fd512ad9f95b4a6522316208d9be890614c31df20d1f5d4aa969daae251b)
+
+The first attempt with `300_000_000_000` deploy gas was submitted but failed out-of-gas. The successful retry used `800_000_000_000` deploy gas, which stays below the Testnet block gas limit observed during deployment.
+
+No private key, `.env`, CSPR.cloud API key, or PEM file should be committed or sent to Manus.

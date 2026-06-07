@@ -66,7 +66,7 @@ flowchart TD
 - Deploy `RwaOracle` to Casper Testnet after local key material is available.
 - Register the signing account as the first demo oracle.
 - Publish one demo RWA datapoint with evidence hash and record the contract package hash plus deploy/call transaction evidence.
-- Status: passed Manus Checkpoint 02 with 7 Odra tests. Live Testnet deploy remains pending local key material, but Manus approved starting Phase 3 in mock mode.
+- Status: passed Manus Checkpoint 02 with 7 Odra tests. Live Testnet deploy was completed after user-provided key material became available, producing a contract package hash and publish transaction evidence.
 
 ### Phase 3: AI Agent Core
 
