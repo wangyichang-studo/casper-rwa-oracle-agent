@@ -10,7 +10,9 @@ Required local materials:
 
 - Casper Testnet secret key at `contracts/rwa-oracle/keys/secret_key.pem`
 - Funded Testnet account for deploy gas
-- Access to `https://node.testnet.cspr.cloud` or another Casper Testnet node/events endpoint
+- Access to `https://node.testnet.casper.network` or another Casper Testnet node/events endpoint
+
+The public Casper Testnet node works without an API token. CSPR.cloud endpoints can still be used when a CSPR.cloud API authorization setup is available.
 
 Required build tools:
 
@@ -56,4 +58,6 @@ The deploy runner:
 
 ## Current Blocker
 
-Live Testnet deployment is blocked until the user provides local Testnet key material and enough faucet CSPR. No private key, `.env`, or PEM file should be committed or sent to Manus.
+The account `0202843d288fff484d5f70a847fb239cb428af5c7f66e878cd99b0fdbc29f618adf2` is visible on Casper Testnet as `account-hash-5cc1872a3fcdd350bd6f5d5c1f491d1446ed40e0ac727d4431511d1f83af8dc0` and has sufficient faucet CSPR for the demo gas budget.
+
+Live Testnet deployment is blocked only until the matching local Testnet secret key exists at `contracts/rwa-oracle/keys/secret_key.pem`. No private key, `.env`, or PEM file should be committed or sent to Manus.

@@ -214,7 +214,7 @@ Latest local gates:
 
 Live external blockers:
 
-- user-provided funded Casper Testnet key
+- local `contracts/rwa-oracle/keys/secret_key.pem` for the verified funded Testnet account
 - deployed contract package hash
 - CSPR.cloud x402 facilitator authorization token
 - real Casper EIP-712 payment signing material

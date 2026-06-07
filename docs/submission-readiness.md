@@ -15,6 +15,14 @@ Status timestamp: 2026-06-07 00:35 CST.
 | CSPR.trade MCP smoke check | ✅ Graceful placeholder command ready | ✅ Non-blocking enrichment path documented | Optional: configure MCP bridge and rerun `npm run mcp:check`. |
 | Public demo video | ✅ Script ready | ⏳ Pending upload | Record and upload a public 3-5 minute demo video. |
 
+## Verified Testnet Account
+
+- Account: `0202843d288fff484d5f70a847fb239cb428af5c7f66e878cd99b0fdbc29f618adf2`
+- Account hash: `account-hash-5cc1872a3fcdd350bd6f5d5c1f491d1446ed40e0ac727d4431511d1f83af8dc0`
+- Main purse: `uref-6b71adf2446a1f1d48cc97fe440dc35e760a86d26a61843bd0b39bdfc248b5d7-007`
+- Latest checked balance: `5000000000000` motes, about `5000 CSPR`.
+- Deployment blocker remaining: matching local `contracts/rwa-oracle/keys/secret_key.pem`.
+
 ## Final Safety Checklist
 
 - ✅ `.gitignore` blocks `.env`, `.env.*`, `keys/`, `*.pem`, `*.key`, `node_modules/`, and generated contract `wasm/`.
@@ -60,7 +68,7 @@ Status timestamp: 2026-06-07 00:35 CST.
 
 ## Remaining External Inputs
 
-- Casper Testnet key path and funded account.
+- Casper Testnet secret key path for the verified funded account.
 - Contract package hash after live deploy.
 - CSPR.cloud x402 facilitator authorization token if live settlement is recorded.
 - Public repository URL.
