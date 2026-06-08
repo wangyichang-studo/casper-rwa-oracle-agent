@@ -1,6 +1,46 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+if ! command -v rg >/dev/null 2>&1; then
+  rg() {
+    local grep_args=(-RIE)
+
+    while [[ "$#" -gt 0 ]]; do
+      case "$1" in
+        -n)
+          grep_args+=("-n")
+          shift
+          ;;
+        -q)
+          grep_args+=("-q")
+          shift
+          ;;
+        -i)
+          grep_args+=("-i")
+          shift
+          ;;
+        -qi|-iq)
+          grep_args+=("-q" "-i")
+          shift
+          ;;
+        --)
+          shift
+          break
+          ;;
+        -*)
+          echo "rg fallback does not support option: $1" >&2
+          return 2
+          ;;
+        *)
+          break
+          ;;
+      esac
+    done
+
+    grep "${grep_args[@]}" "$@"
+  }
+fi
+
 required_paths=(
   ".gitignore"
   ".github/workflows/ci.yml"
