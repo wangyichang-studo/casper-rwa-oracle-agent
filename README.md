@@ -147,6 +147,7 @@ Expected terminal story:
 - Network: `casper-test`
 - Contract package hash: `hash-8c5d2f16c0a552f95e92ab9a5efcac562dca17abb05db9359bfda270e3659cd8`
 - Explorer base: [CSPR.live Testnet](https://testnet.cspr.live/)
+- Public repository URL: [https://github.com/wangyichang-studo/casper-rwa-oracle-agent](https://github.com/wangyichang-studo/casper-rwa-oracle-agent)
 - Contract explorer: [CSPR.live contract package](https://testnet.cspr.live/contract-package/hash-8c5d2f16c0a552f95e92ab9a5efcac562dca17abb05db9359bfda270e3659cd8)
 - Sample deploy: [CSPR.live deploy](https://testnet.cspr.live/deploy/dd62fd512ad9f95b4a6522316208d9be890614c31df20d1f5d4aa969daae251b)
 
@@ -170,7 +171,7 @@ No `.env`, PEM, key, token, or raw private asset document should be committed or
 
 Demo script: `docs/demo-video-script.md`
 
-Public video URL: pending recording and upload before DoraHacks submission.
+Public video URL: [Demo video](https://youtu.be/dlEN2rdP9WU)
 
 DoraHacks submission draft: `docs/dorahacks-submission-draft.md`
 
@@ -221,7 +222,7 @@ Remaining external blockers:
 - CSPR.cloud x402 facilitator authorization token
 - real Casper EIP-712 payment signing material
 
-`make submission-check` intentionally fails until the public repository URL and public demo video URL are filled.
+`make submission-check` should pass after the public repository and demo video URLs are filled.
 
 ## Submission Readiness
 
@@ -234,8 +235,8 @@ Must-have artifacts for DoraHacks:
 - ✅ Working local prototype and tests
 - ✅ Transaction-generating Casper Testnet deploy path
 - ✅ Live Testnet contract hash
-- ⏳ Public GitHub/GitLab/Bitbucket remote URL
-- ⏳ Public demo video URL
+- ✅ Public GitHub/GitLab/Bitbucket remote URL
+- ✅ Public demo video URL
 
 ## Comparison With Existing Solutions
 

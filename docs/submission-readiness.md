@@ -1,19 +1,19 @@
 # Submission Readiness
 
-Status timestamp: 2026-06-07 22:20 CST.
+Status timestamp: 2026-06-08 12:45 CST.
 
 ## Required DoraHacks Artifacts
 
 | Artifact | Local Status | Public Submission Status | Human Action |
 | --- | --- | --- | --- |
-| Open-source repository contents | ✅ Ready locally | ⏳ Pending public remote | Create public GitHub/GitLab/Bitbucket repo and push. |
+| Open-source repository contents | ✅ Ready locally | ✅ Public repo: [link](https://github.com/wangyichang-studo/casper-rwa-oracle-agent) | Keep repo public through judging. |
 | README with usage instructions | ✅ Ready locally | ✅ Ready for public repo | Add live contract/video links after they exist. |
 | Working prototype | ✅ `make verify` passes | ✅ Local prototype can be reviewed | Run the demo commands during video recording. |
 | Casper Testnet prototype path | ✅ Deploy/register/publish runner implemented | ✅ Contract package: [hash-8c5d2f16c0a552f95e92ab9a5efcac562dca17abb05db9359bfda270e3659cd8](https://testnet.cspr.live/contract-package/hash-8c5d2f16c0a552f95e92ab9a5efcac562dca17abb05db9359bfda270e3659cd8) | Keep Testnet account funded for any re-demo. |
 | Transaction-generating on-chain component | ✅ Odra tests, WASM build, and livenet deploy binary check pass | ✅ contract [hash-8c5d2f16c0a552f95e92ab9a5efcac562dca17abb05db9359bfda270e3659cd8](https://testnet.cspr.live/contract-package/hash-8c5d2f16c0a552f95e92ab9a5efcac562dca17abb05db9359bfda270e3659cd8), deploy [dd62fd512ad9f95b4a6522316208d9be890614c31df20d1f5d4aa969daae251b](https://testnet.cspr.live/deploy/dd62fd512ad9f95b4a6522316208d9be890614c31df20d1f5d4aa969daae251b) | Preserve deploy logs for final submission evidence. |
 | x402 paid evidence flow | ✅ Mock/reference, local HTTP mode, and demo evidence capture pass | ✅ Mock/reference mode is demo-ready | Optional: configure live facilitator credentials before recording. |
 | CSPR.trade MCP smoke check | ✅ Graceful placeholder command ready | ✅ Non-blocking enrichment path documented | Optional: configure MCP bridge and rerun `npm run mcp:check`. |
-| Public demo video | ✅ Script ready | ⏳ Pending upload | Record and upload a public 3-5 minute demo video. |
+| Public demo video | ✅ Script ready | ✅ Public video: [link](https://youtu.be/dlEN2rdP9WU) | Keep the video URL public through judging. |
 
 ## Verified Testnet Account
 
@@ -70,12 +70,4 @@ Status timestamp: 2026-06-07 22:20 CST.
 ## Remaining External Inputs
 
 - CSPR.cloud x402 facilitator authorization token if live settlement is recorded.
-- Public repository URL.
-- Public demo video URL.
 - Optional project social link for the long-term launch plan section.
-
-Use `docs/dorahacks-submission-draft.md` as the working copy for the final BUIDL form text.
-
-Run `node scripts/fill-submission-artifacts.mjs` after the public repository and public demo video URLs exist. `make submission-check` is expected to fail until those two public URLs are filled.
-
-The repository includes `.github/workflows/ci.yml`; after pushing to a public remote, GitHub Actions should run `make ci` as a portable quick gate.

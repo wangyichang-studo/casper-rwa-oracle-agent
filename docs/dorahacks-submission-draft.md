@@ -56,15 +56,11 @@ The agent autonomously triages RWA cases, pays for premium evidence only when ex
 
 ## Repository Link
 
-Pending public repository URL. After the repo exists, run:
-
-```bash
-node scripts/fill-submission-artifacts.mjs --repo-url https://github.com/YOUR_ACCOUNT/casper-rwa-oracle-agent
-```
+[Public repository](https://github.com/wangyichang-studo/casper-rwa-oracle-agent)
 
 ## Demo Video Link
 
-Pending public demo video URL. Use `docs/demo-video-script.md` for the 3-5 minute recording plan.
+[Public demo video](https://youtu.be/dlEN2rdP9WU)
 
 ## Testnet Contract Evidence
 
@@ -110,7 +106,5 @@ The gate covers:
 
 ## Remaining Submission Actions
 
-- Create and push to a public GitHub/GitLab/Bitbucket repository.
-- Record and upload the public demo video.
 - Re-run `make verify` before final DoraHacks submission.
 - Run `make submission-check` and confirm it passes before pressing submit.
