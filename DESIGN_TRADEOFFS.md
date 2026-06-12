@@ -262,3 +262,60 @@ Mitigation:
 
 - Provide `--dry-run` and a Make target so the script can be verified without changing files.
 - Keep updates scoped to public metadata fields only.
+
+## Explicit DecisionMaker Before More x402 Surface Area
+
+Decision: add a small `DecisionMaker` module before adding more x402 or publishing features.
+
+Why:
+
+- The buildathon differentiation depends on autonomous judgment, not only HTTP or contract plumbing.
+- A named decision boundary makes the agent easy to explain in README, tests, logs, and demo narration.
+- The 50-70 premium-evidence band keeps paid data requests economically rational.
+
+Tradeoff:
+
+- This introduces one more module and slightly more configuration surface.
+
+Mitigation:
+
+- Keep the module pure, deterministic, and covered by focused tests.
+- Preserve the existing risk model and x402 client behavior; the new module only owns routing.
+
+## Generated PNG Charts Without New npm Dependencies
+
+Decision: generate the competition charts with a small pure Node PNG writer instead of adding charting dependencies.
+
+Why:
+
+- The repository already has enough moving parts across Rust, TypeScript, and shell gates.
+- The charts are submission-supporting artifacts, not product runtime behavior.
+- Avoiding new dependencies keeps `make ci` fast and credential-free.
+
+Tradeoff:
+
+- The chart renderer is intentionally simple and uses a tiny bitmap font rather than a full design stack.
+
+Mitigation:
+
+- Keep the script deterministic and track generated PNGs.
+- Use README captions and Mermaid diagrams for richer explanation.
+
+## Honest Three-Transaction Testnet Evidence
+
+Decision: document only the three real Testnet transactions that exist, and describe 20+ batch publishing as future readiness rather than completed work.
+
+Why:
+
+- The local live deploy `.env` and funded key material are not present in the working tree.
+- Fabricating a 20+ transaction table would damage credibility with judges.
+- The existing deploy/register/publish sequence already satisfies the on-chain component requirement.
+
+Tradeoff:
+
+- The project does not currently show the same on-chain activity volume requested in the downloaded optimization guide.
+
+Mitigation:
+
+- Add `docs/testnet_evidence.md` with direct explorer links and batch-readiness prerequisites.
+- Keep visual charts scoped to deterministic local agent evaluation cycles, not live chain transactions.

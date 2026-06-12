@@ -1,4 +1,4 @@
-.PHONY: verify ci scaffold-check contract-test contract-build deploy-check agent-test agent-build agent-demo mcp-check oracle-test demo-evidence diff-check fill-artifacts-dry-run submission-check export-package
+.PHONY: verify ci scaffold-check contract-test contract-build deploy-check agent-test agent-build agent-demo agent-json mcp-check oracle-test demo-evidence competition-assets diff-check fill-artifacts-dry-run submission-check export-package
 
 verify:
 	./scripts/final-verify.sh
@@ -27,6 +27,9 @@ agent-build:
 agent-demo:
 	cd agent-backend && npm run agent:mock
 
+agent-json:
+	cd agent-backend && npm run agent:json
+
 mcp-check:
 	cd agent-backend && npm run mcp:check
 
@@ -35,6 +38,9 @@ oracle-test:
 
 demo-evidence:
 	./scripts/capture-demo-evidence.sh
+
+competition-assets:
+	node scripts/generate-competition-assets.mjs
 
 diff-check:
 	git diff --check

@@ -40,7 +40,7 @@ The agent autonomously triages RWA cases, pays for premium evidence only when ex
 ## Technical Highlights
 
 - `RwaOracle` Odra contract with oracle registry, data feed history, evidence hash storage, reputation updates, slashing, and owner-only pause.
-- TypeScript agent with deterministic synthetic data loading, risk/confidence scoring, evidence hashing, and mock/live publisher modes.
+- TypeScript agent with deterministic synthetic data loading, risk/confidence scoring, explicit decision boundary logic, JSONL logs, and mock/live publisher modes.
 - x402 oracle server that returns `402 Payment Required`, verifies a mock/reference `PAYMENT-SIGNATURE`, and returns premium risk evidence.
 - Borderline-case upgrade: `rwa-demo-warehouse-lease-009` starts as uncertain, triggers x402 paid evidence, and upgrades to a publish decision.
 - Secret hygiene: `.env`, PEM/private keys, CSPR.cloud tokens, and raw private documents are excluded from git.
@@ -81,7 +81,7 @@ The gate covers:
 - 7 Odra contract tests
 - Odra WASM build
 - livenet deploy binary check
-- 10 TypeScript agent tests
+- 16 TypeScript agent tests
 - TypeScript build
 - portable GitHub Actions CI quick check
 - mock agent demo
@@ -99,7 +99,7 @@ The gate covers:
 | Innovation and originality | Autonomous RWA oracle decision loop with x402 paid evidence for only borderline cases. |
 | AI / agentic systems | Agent logs show perception, evidence lookup, decision, and publish preparation without manual intervention. |
 | Real-world applicability | RWA evidence provenance, confidence scoring, and oracle reputation are directly relevant to DeFi/RWA workflows. |
-| User experience and design | README, demo script, contribution guide, final artifact fill script, and one-command verification gate. |
+| User experience and design | README, architecture/decision diagrams, generated charts, demo script, contribution guide, final artifact fill script, and one-command verification gate. |
 | Working smart contracts | Odra tests, WASM build, and livenet deploy/register/publish runner. |
 | Long-term launch plan | Roadmap covers Testnet deployment, live x402 settlement, CSPR.trade MCP enrichment, and multi-oracle reputation. |
 | Ecosystem impact | Uses Casper Testnet, Odra, x402, CSPR.cloud/CSPR.live, and optional CSPR.trade MCP. |

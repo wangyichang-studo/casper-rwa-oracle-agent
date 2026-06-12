@@ -19,7 +19,7 @@ Casper RWA Oracle Agent is an autonomous AI agent that bridges off-chain Real-Wo
 
 ### Key Features
 
-- **Autonomous Decision Loop**: Collects RWA data -> AI risk assessment -> confidence scoring -> publish or skip.
+- **Autonomous Decision Loop**: Collects RWA data -> AI risk assessment -> confidence scoring -> publish directly, buy premium evidence, or skip.
 - **x402 Micropayments**: Agent autonomously pays for premium risk data when confidence is borderline through HTTP 402, signed retry, and premium data receipt.
 - **On-chain Verification**: Published data includes SHA-256 evidence hashes for data provenance.
 - **Reputation System**: On-chain reputation scoring with slash mechanism for inaccurate oracles.
@@ -32,8 +32,8 @@ Casper RWA Oracle Agent is an autonomous AI agent that bridges off-chain Real-Wo
 | Odra Framework | Smart contract development, tests, WASM build, and Testnet deployment |
 | CSPR.cloud | Testnet node/API path and future live facilitator integration |
 | x402 Protocol | Agent-to-agent micropayments for premium data |
-| CSPR.click | Wallet integration planned for future UX |
-| MCP Server | On-chain data query and ecosystem enrichment path |
+| CSPR.trade MCP | Non-blocking smoke/enrichment path; not required for the main demo |
+| Casper MCP / ecosystem queries | Documented path for future on-chain state cross-validation |
 
 ### Live Testnet Deployment
 
@@ -49,7 +49,7 @@ Casper RWA Oracle Agent is an autonomous AI agent that bridges off-chain Real-Wo
 - **AI Agent**: TypeScript + Node.js
 - **x402 Oracle Server**: Node.js HTTP service
 - **Deployment**: Casper Testnet
-- **Testing**: 20 tests total (7 contract + 10 agent + 3 oracle server)
+- **Testing**: 26 tests total (7 contract + 16 agent + 3 oracle server)
 
 ### Architecture
 
@@ -67,8 +67,8 @@ Casper RWA Oracle Agent is an autonomous AI agent that bridges off-chain Real-Wo
           ▼              ▼              ▼
    ┌────────────┐ ┌───────────┐ ┌────────────────┐
    │ Oracle     │ │ Casper    │ │ CSPR.trade     │
-   │ Server     │ │ Testnet   │ │ MCP Server     │
-   │ (x402)     │ │ Contract  │ │ (data queries) │
+   │ Server     │ │ Testnet   │ │ MCP Path       │
+   │ (x402)     │ │ Contract  │ │ (optional)     │
    └────────────┘ └───────────┘ └────────────────┘
 ```
 

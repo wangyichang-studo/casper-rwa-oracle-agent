@@ -1,8 +1,10 @@
 import { createHash } from "node:crypto";
 
 import { hashEvidence } from "./evidence.js";
+import { decideNextAction } from "./decision-maker.js";
 import type {
   AssessedDataPoint,
+  DecisionMakerOptions,
   Logger,
   PremiumRiskScore,
   X402Config,
@@ -162,7 +164,13 @@ export function shouldRequestPremiumEvidence(
   assessed: AssessedDataPoint,
   config: X402Config,
 ): boolean {
-  return config.enabled && assessed.confidence >= 50 && assessed.confidence <= 70;
+  const options: DecisionMakerOptions = {
+    publishThreshold: 60,
+    premiumEvidenceMinConfidence: config.premiumEvidenceMinConfidence ?? 50,
+    premiumEvidenceMaxConfidence: config.premiumEvidenceMaxConfidence ?? 70,
+    x402Enabled: config.enabled,
+  };
+  return decideNextAction(assessed, options).shouldRequestPremiumEvidence;
 }
 
 export function applyPremiumRiskEvidence(

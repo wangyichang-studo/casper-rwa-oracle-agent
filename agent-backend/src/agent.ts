@@ -3,6 +3,7 @@ import { fileURLToPath } from "node:url";
 
 import { loadAgentConfig } from "./config.js";
 import { loadSyntheticRwaCases } from "./data-collector.js";
+import { decideNextAction } from "./decision-maker.js";
 import { createLogger } from "./logger.js";
 import { assessBatch } from "./risk-assessor.js";
 import { publishAssessedData } from "./chain-publisher.js";
@@ -34,7 +35,31 @@ export async function runAgentOnce(
 
   for (const initialPoint of initialAssessments) {
     let point = initialPoint;
-    if (shouldRequestPremiumEvidence(point, config.x402)) {
+    const outcome = decideNextAction(point, {
+      publishThreshold: config.publishThreshold,
+      premiumEvidenceMinConfidence: config.x402.premiumEvidenceMinConfidence,
+      premiumEvidenceMaxConfidence: config.x402.premiumEvidenceMaxConfidence,
+      x402Enabled: config.x402.enabled,
+    });
+
+    logger.event("DECISION_GATE", "EVALUATED", {
+      assetId: point.assetId,
+      confidence: point.confidence,
+      confidence_score: point.confidence,
+      decision: outcome.action,
+      publishDecision: outcome.publishDecision,
+      reason: outcome.reason,
+    });
+
+    if (point.decision !== outcome.publishDecision) {
+      point = {
+        ...point,
+        decision: outcome.publishDecision,
+        reason: outcome.reason,
+      };
+    }
+
+    if (outcome.shouldRequestPremiumEvidence && shouldRequestPremiumEvidence(point, config.x402)) {
       try {
         point = await enrichWithPremiumEvidence(point, config.x402, logger);
       } catch (error) {
@@ -55,6 +80,7 @@ export async function runAgentOnce(
     logger.event("DECISION", point.decision.toUpperCase(), {
       assetId: point.assetId,
       confidence: point.confidence,
+      confidence_score: point.confidence,
       reason: point.reason,
     });
 
@@ -65,6 +91,7 @@ export async function runAgentOnce(
         assetId: point.assetId,
         mode: result.mode,
         transactionHash: result.transactionHash,
+        tx_hash: result.transactionHash,
         contractPackageHash: result.contractPackageHash,
         unsignedDeployJson: result.unsignedDeployJson,
       });
@@ -93,7 +120,11 @@ export function isDirectCliEntrypoint(metaUrl: string, argvEntry: string | undef
 async function main(): Promise<void> {
   const once = process.argv.includes("--once");
   const config = loadAgentConfig();
-  const logger = createLogger();
+  const logger = createLogger(
+    undefined,
+    undefined,
+    process.env.LOG_FORMAT === "json" ? "json" : "pretty",
+  );
 
   await runAgentOnce(config, logger);
 

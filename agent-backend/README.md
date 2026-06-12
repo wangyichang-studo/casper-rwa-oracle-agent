@@ -9,9 +9,20 @@ npm install
 npm test
 npm run build
 npm run agent:mock
+npm run agent:json
 ```
 
-The default mode is `mock`, which runs the full perception, evidence, decision, and publish loop without signing or submitting a Casper deploy. Live Testnet publishing requires local key material and must keep `.env` plus PEM files uncommitted.
+The default mode is `mock`, which runs the full perception, evidence, decision, and publish loop without signing or submitting a Casper deploy. `npm run agent:json` emits parseable JSONL logs for reviewer evidence. Live Testnet publishing requires local key material and must keep `.env` plus PEM files uncommitted.
+
+## Decision Boundary
+
+The agent stores confidence on a 0-100 scale:
+
+- `> 70`: publish directly without spending on premium evidence.
+- `50-70`: request x402 premium evidence when x402 is enabled.
+- below `50`: skip or keep for review instead of writing on-chain.
+
+The x402 confidence band is configurable with `X402_PREMIUM_MIN_CONFIDENCE` and `X402_PREMIUM_MAX_CONFIDENCE`.
 
 ## x402 Evidence
 

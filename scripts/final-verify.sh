@@ -18,6 +18,8 @@ run_step() {
   "$@"
 }
 
+run_step "Competition asset generation" bash -lc "cd '$ROOT_DIR' && make competition-assets"
+
 run_step "Scaffold and secret hygiene" "$ROOT_DIR/scripts/verify-phase0.sh"
 
 run_step "Odra contract tests" bash -lc "cd '$ROOT_DIR/contracts/rwa-oracle' && cargo odra test"

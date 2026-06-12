@@ -176,3 +176,23 @@
   - push to public GitHub/GitLab/Bitbucket repository
   - record and upload demo video
   - fill final public URLs and rerun `make submission-check`
+
+## 2026-06-13 - Checkpoint 09 Competition Polish
+
+- User explicitly directed Codex to skip waiting for Checkpoint 08 Manus feedback and optimize the project directly.
+- Added an explicit TypeScript `DecisionMaker` boundary:
+  - confidence above 70 publishes directly
+  - confidence 50-70 triggers x402 premium evidence when enabled
+  - lower confidence remains skipped or review-only
+- Added `LOG_FORMAT=json` / `npm run agent:json` for parseable JSONL evidence logs while keeping the original demo-friendly pretty logs.
+- Reworked README into a judge-first narrative with badges, AI decision logic, architecture, generated competition visuals, honest Testnet evidence, and updated quick-start commands.
+- Added tracked visual/evidence artifacts:
+  - `docs/architecture.mmd`
+  - `docs/decision_flow.mmd`
+  - `docs/testnet_evidence.md`
+  - `docs/confidence_distribution.png`
+  - `docs/x402_trigger_rate.png`
+  - `docs/agent_timeline.png`
+- Added `scripts/generate-competition-assets.mjs` plus `make competition-assets`; `make ci` and `make verify` now regenerate the charts before checking project structure.
+- Updated DoraHacks submission copy to reflect 16 agent tests, JSONL logs, diagrams, and the non-blocking CSPR.trade MCP status.
+- Maintained the honesty boundary: no claim of 20+ live Testnet transactions is made until real deploy hashes exist.

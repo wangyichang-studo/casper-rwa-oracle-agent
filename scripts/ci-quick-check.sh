@@ -10,6 +10,8 @@ run_step() {
   "$@"
 }
 
+run_step "Competition asset generation" bash -lc "cd '$ROOT_DIR' && make competition-assets"
+
 run_step "Scaffold and secret hygiene" "$ROOT_DIR/scripts/verify-phase0.sh"
 
 run_step "Agent npm ci" bash -lc "cd '$ROOT_DIR/agent-backend' && npm ci"

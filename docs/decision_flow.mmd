@@ -1,0 +1,22 @@
+flowchart TD
+  Start["Agent cycle starts"] --> Load["Load RWA case"]
+  Load --> Score["RiskEngine calculates confidence score"]
+  Score --> High{"Confidence > 70?"}
+  High -->|yes| Direct["Publish directly\nNo x402 spend"]
+  High -->|no| Band{"50 <= confidence <= 70?"}
+  Band -->|yes| Pay["Decision: pay_for_premium\nRequest x402 evidence"]
+  Band -->|no| Low{"Below review band?"}
+  Low -->|yes| Skip["Skip / block\nDo not publish"]
+  Low -->|no| Review["Human review\nNo chain write"]
+
+  Pay --> Challenge["Oracle returns HTTP 402\nPAYMENT-REQUIRED"]
+  Challenge --> Signed["Agent builds payment payload\nPAYMENT-SIGNATURE"]
+  Signed --> Premium["Premium risk evidence received"]
+  Premium --> Reassess{"Premium action"}
+  Reassess -->|publish_with_high_confidence| Upgraded["Upgrade to publish\nMerge evidence hashes"]
+  Reassess -->|review_required| Review
+  Reassess -->|block| Skip
+
+  Direct --> Chain["Casper publish_data\nvalue, timestamp, confidence, evidence_hash"]
+  Upgraded --> Chain
+  Chain --> Done["CSPR.live-verifiable transaction/state"]

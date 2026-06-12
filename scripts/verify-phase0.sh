@@ -53,12 +53,14 @@ required_paths=(
   "agent-backend/package.json"
   "agent-backend/package-lock.json"
   "agent-backend/tsconfig.json"
+  "agent-backend/.npmrc"
   "agent-backend/.env.example"
   "agent-backend/README.md"
   "agent-backend/src/agent.ts"
   "agent-backend/src/chain-publisher.ts"
   "agent-backend/src/config.ts"
   "agent-backend/src/data-collector.ts"
+  "agent-backend/src/decision-maker.ts"
   "agent-backend/src/evidence.ts"
   "agent-backend/src/logger.ts"
   "agent-backend/src/mcp-smoke.ts"
@@ -67,6 +69,7 @@ required_paths=(
   "agent-backend/src/x402-client.ts"
   "agent-backend/data/rwa-cases.json"
   "agent-backend/test/agent.test.ts"
+  "agent-backend/test/decision-maker.test.ts"
   "agent-backend/test/evidence.test.ts"
   "agent-backend/test/logger.test.ts"
   "agent-backend/test/risk-assessor.test.ts"
@@ -89,6 +92,12 @@ required_paths=(
   "oracle-server/src/x402.js"
   "oracle-server/test/server.test.js"
   "docs/official-rules.md"
+  "docs/architecture.mmd"
+  "docs/decision_flow.mmd"
+  "docs/testnet_evidence.md"
+  "docs/confidence_distribution.png"
+  "docs/x402_trigger_rate.png"
+  "docs/agent_timeline.png"
   "docs/project-guide.md"
   "docs/resources.md"
   "docs/demo-video-outline.md"
@@ -110,6 +119,7 @@ required_paths=(
   "manus_feedback/Manus 反馈 — Checkpoint 00.md"
   "manus_feedback/Manus 反馈 — Checkpoint 05.md"
   "scripts/final-verify.sh"
+  "scripts/generate-competition-assets.mjs"
   "scripts/fill-submission-artifacts.mjs"
   "scripts/check-submission-ready.mjs"
   "scripts/capture-demo-evidence.sh"
@@ -151,10 +161,21 @@ rg -q '^ci:' Makefile
 rg -q '^demo-evidence:' Makefile
 rg -q '^submission-check:' Makefile
 rg -q '^export-package:' Makefile
+rg -q '^competition-assets:' Makefile
 rg -q 'fill-artifacts-dry-run' Makefile
 rg -q 'make verify' README.md CONTRIBUTING.md
 rg -q 'make ci' README.md CONTRIBUTING.md .github/workflows/ci.yml
 rg -q 'fill-submission-artifacts' README.md CONTRIBUTING.md
+rg -q 'agent:json' README.md agent-backend/package.json agent-backend/README.md
+rg -q 'DecisionMaker' README.md agent-backend/src/decision-maker.ts
+rg -q 'pay_for_premium' README.md agent-backend/src/decision-maker.ts agent-backend/test/decision-maker.test.ts
+rg -q 'premiumEvidenceMaxConfidence' agent-backend/src/types.ts agent-backend/src/config.ts
+rg -q 'architecture.mmd' README.md docs/architecture.mmd
+rg -q 'pay_for_premium' docs/decision_flow.mmd
+rg -q 'confidence_distribution.png' README.md scripts/generate-competition-assets.mjs
+rg -q 'x402_trigger_rate.png' README.md scripts/generate-competition-assets.mjs
+rg -q 'agent_timeline.png' README.md scripts/generate-competition-assets.mjs
+rg -q 'does not claim 20\+ live transactions' README.md docs/testnet_evidence.md
 rg -q 'RWA Oracle Agent' README.md docs/project-guide.md skills/casper-buildathon-rwa-loop/SKILL.md
 rg -q 'Casper AI Toolkit Usage' README.md
 rg -q 'Submission Readiness' README.md docs/submission-readiness.md

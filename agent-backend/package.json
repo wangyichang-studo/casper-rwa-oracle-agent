@@ -6,7 +6,8 @@
   "scripts": {
     "build": "tsc --noEmit",
     "test": "node --import tsx --test \"test/**/*.test.ts\"",
-    "agent:mock": "tsx src/agent.ts --once",
+    "agent:mock": "LOG_FORMAT=pretty tsx src/agent.ts --once",
+    "agent:json": "LOG_FORMAT=json tsx src/agent.ts --once",
     "mcp:check": "tsx src/mcp-smoke.ts"
   },
   "dependencies": {

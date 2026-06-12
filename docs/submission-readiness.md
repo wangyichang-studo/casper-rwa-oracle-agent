@@ -8,6 +8,7 @@ Status timestamp: 2026-06-08 12:45 CST.
 | --- | --- | --- | --- |
 | Open-source repository contents | ✅ Ready locally | ✅ Public repo: [link](https://github.com/wangyichang-studo/casper-rwa-oracle-agent) | Keep repo public through judging. |
 | README with usage instructions | ✅ Ready locally | ✅ Ready for public repo | Add live contract/video links after they exist. |
+| Architecture and decision visuals | ✅ Mermaid diagrams and PNG charts generated | ✅ Included in README | Regenerate with `make competition-assets` after changing agent scoring data. |
 | Working prototype | ✅ `make verify` passes | ✅ Local prototype can be reviewed | Run the demo commands during video recording. |
 | Casper Testnet prototype path | ✅ Deploy/register/publish runner implemented | ✅ Contract package: [hash-8c5d2f16c0a552f95e92ab9a5efcac562dca17abb05db9359bfda270e3659cd8](https://testnet.cspr.live/contract-package/hash-8c5d2f16c0a552f95e92ab9a5efcac562dca17abb05db9359bfda270e3659cd8) | Keep Testnet account funded for any re-demo. |
 | Transaction-generating on-chain component | ✅ Odra tests, WASM build, and livenet deploy binary check pass | ✅ contract [hash-8c5d2f16c0a552f95e92ab9a5efcac562dca17abb05db9359bfda270e3659cd8](https://testnet.cspr.live/contract-package/hash-8c5d2f16c0a552f95e92ab9a5efcac562dca17abb05db9359bfda270e3659cd8), deploy [dd62fd512ad9f95b4a6522316208d9be890614c31df20d1f5d4aa969daae251b](https://testnet.cspr.live/deploy/dd62fd512ad9f95b4a6522316208d9be890614c31df20d1f5d4aa969daae251b) | Preserve deploy logs for final submission evidence. |
@@ -30,8 +31,8 @@ Status timestamp: 2026-06-08 12:45 CST.
 - ✅ `.env.example` files describe required local variables.
 - ✅ No local `.env`, PEM, or key file is present in the working tree.
 - ✅ Raw RWA/KYC files are not stored in the repo.
-- ✅ Manus approvals are saved through Checkpoint 05.
-- ✅ Final Manus review for Phase 5 approved the local development loop.
+- ✅ Manus approvals are saved through Checkpoint 07.
+- ✅ Checkpoint 09 competition-polish package is prepared in `manus_outbox/` without blocking on Checkpoint 08 feedback.
 
 ## Project Directory Tree
 

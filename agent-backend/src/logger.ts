@@ -1,4 +1,4 @@
-import type { Logger } from "./types.js";
+import type { Logger, StructuredLogFormat } from "./types.js";
 
 const SECRET_KEY_PATTERN = /(secret|token|password|private[_-]?key|api[_-]?key|pem)/i;
 const PRIVATE_KEY_BLOCK_PATTERN =
@@ -33,12 +33,20 @@ export function redactSecrets(detail: Record<string, unknown> = {}): Record<stri
 export function createLogger(
   sink: (line: string) => void = (line) => console.log(line),
   now: () => Date = () => new Date(),
+  format: StructuredLogFormat = "pretty",
 ): Logger {
   return {
     event(module: string, action: string, detail: Record<string, unknown> = {}): string {
       const timestamp = now().toISOString();
       const safeDetail = redactSecrets(detail);
-      const line = `[${timestamp}] [${module}] [${action}] ${JSON.stringify(safeDetail)}`;
+      const line = format === "json"
+        ? JSON.stringify({
+          ...safeDetail,
+          timestamp,
+          module_name: module,
+          action,
+        })
+        : `[${timestamp}] [${module}] [${action}] ${JSON.stringify(safeDetail)}`;
       sink(line);
       return line;
     },

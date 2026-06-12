@@ -241,8 +241,8 @@ cat <<'EOF'
   ✅ Odra Framework     — Smart contract development & deployment
   ✅ CSPR.cloud         — Testnet node access & API
   ✅ x402 Protocol      — Agent-to-agent micropayments
-  ✅ CSPR.click         — Wallet integration (planned)
-  ✅ MCP Server         — On-chain data queries (integrated)
+  ✅ CSPR.trade MCP     — Optional smoke/enrichment path
+  ✅ Casper MCP path    — Documented on-chain query roadmap
 EOF
 echo ""
 echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"

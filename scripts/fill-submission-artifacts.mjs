@@ -141,34 +141,83 @@ function upsertSectionLines(text, heading, linesToAdd) {
   return `${prefix}${filtered.join("\n")}${rest}`;
 }
 
+function replaceOrInsertSectionLine(text, heading, prefixes, replacement, afterPrefixes = []) {
+  const marker = `## ${heading}`;
+  const start = text.indexOf(marker);
+  if (start === -1) {
+    fail(`could not find section '${marker}'`);
+  }
+  const next = text.indexOf("\n## ", start + marker.length);
+  const end = next === -1 ? text.length : next;
+  const prefix = text.slice(0, start);
+  const sectionLines = text.slice(start, end).split("\n");
+  const rest = text.slice(end);
+  const existingIndex = sectionLines.findIndex((line) => prefixes.some((linePrefix) => line.startsWith(linePrefix)));
+  if (existingIndex !== -1) {
+    sectionLines[existingIndex] = replacement;
+    return `${prefix}${sectionLines.join("\n")}${rest}`;
+  }
+
+  const afterIndex = sectionLines.findIndex((line) => afterPrefixes.some((linePrefix) => line.startsWith(linePrefix)));
+  sectionLines.splice(afterIndex === -1 ? sectionLines.length : afterIndex + 1, 0, replacement);
+  return `${prefix}${sectionLines.join("\n")}${rest}`;
+}
+
 function updateReadme(text) {
   let next = text;
-  const artifactLines = [];
 
   if (repoUrl) {
-    artifactLines.push(`- Public repository URL: [${repoUrl}](${repoUrl})`);
+    next = replaceOrInsertSectionLine(
+      next,
+      "Live Testnet Evidence",
+      ["- Public repository URL:"],
+      `- Public repository URL: [${repoUrl}](${repoUrl})`,
+      ["- Contract package hash:"],
+    );
   }
   if (contractPackageHash) {
-    next = replaceLine(
+    next = replaceOrInsertSectionLine(
       next,
-      "- Contract package hash:",
+      "Live Testnet Evidence",
+      ["- Contract package hash:"],
       `- Contract package hash: \`${contractPackageHash}\``,
+      ["- Network:"],
     );
-    artifactLines.push(
+    next = replaceOrInsertSectionLine(
+      next,
+      "Live Testnet Evidence",
+      ["- Contract explorer:"],
       `- Contract explorer: [CSPR.live contract package](${contractExplorerUrl(contractPackageHash)})`,
+      ["- Public video URL:"],
     );
   }
   if (deployHash) {
-    artifactLines.push(`- Sample deploy: [CSPR.live deploy](${deployExplorerUrl(deployHash)})`);
+    next = replaceOrInsertSectionLine(
+      next,
+      "Live Testnet Evidence",
+      ["- Sample deploy:"],
+      `- Sample deploy: [CSPR.live deploy](${deployExplorerUrl(deployHash)})`,
+      ["- Contract explorer:"],
+    );
   }
   if (socialUrl) {
-    artifactLines.push(`- Project social: [${socialUrl}](${socialUrl})`);
+    next = replaceOrInsertSectionLine(
+      next,
+      "Live Testnet Evidence",
+      ["- Project social:"],
+      `- Project social: [${socialUrl}](${socialUrl})`,
+      ["- Sample deploy:", "- Contract explorer:"],
+    );
   }
 
-  next = upsertSectionLines(next, "Smart Contract (Testnet)", artifactLines);
-
   if (demoUrl) {
-    next = replaceLine(next, "Public video URL:", `Public video URL: [Demo video](${demoUrl})`);
+    next = replaceOrInsertSectionLine(
+      next,
+      "Live Testnet Evidence",
+      ["- Public video URL:", "Public video URL:"],
+      `- Public video URL: [Demo video](${demoUrl})`,
+      ["- Public repository URL:"],
+    );
   }
 
   if (repoUrl) {

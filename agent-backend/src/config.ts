@@ -45,6 +45,8 @@ export function loadAgentConfig(env: NodeJS.ProcessEnv = process.env): AgentConf
       asset: env.X402_ASSET || DEFAULT_X402_ASSET,
       payTo: env.X402_PAY_TO || DEFAULT_X402_PAY_TO,
       maxTimeoutSeconds: numericEnv(env, "X402_MAX_TIMEOUT_SECONDS", 900, 6, 86_400),
+      premiumEvidenceMinConfidence: numericEnv(env, "X402_PREMIUM_MIN_CONFIDENCE", 50, 0, 100),
+      premiumEvidenceMaxConfidence: numericEnv(env, "X402_PREMIUM_MAX_CONFIDENCE", 70, 0, 100),
     },
   };
 }

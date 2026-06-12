@@ -6,6 +6,29 @@ export type PublishDecision = "publish" | "review" | "skip";
 
 export type X402Mode = "mock" | "live";
 
+export type StructuredLogFormat = "pretty" | "json";
+
+export type DecisionOutcomeAction =
+  | "pay_for_premium"
+  | "publish_directly"
+  | "human_review"
+  | "skip";
+
+export interface DecisionMakerOptions {
+  publishThreshold: number;
+  premiumEvidenceMinConfidence: number;
+  premiumEvidenceMaxConfidence: number;
+  x402Enabled: boolean;
+}
+
+export interface DecisionOutcome {
+  action: DecisionOutcomeAction;
+  shouldRequestPremiumEvidence: boolean;
+  publishDecision: PublishDecision;
+  confidenceScore: number;
+  reason: string;
+}
+
 export interface X402Config {
   enabled: boolean;
   mode: X402Mode;
@@ -17,6 +40,8 @@ export interface X402Config {
   asset: string;
   payTo: string;
   maxTimeoutSeconds: number;
+  premiumEvidenceMinConfidence: number;
+  premiumEvidenceMaxConfidence: number;
 }
 
 export interface AgentConfig {

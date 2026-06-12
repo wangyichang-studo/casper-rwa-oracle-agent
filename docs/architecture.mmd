@@ -1,0 +1,45 @@
+flowchart LR
+  subgraph Data["Data layer"]
+    RWA["Off-chain RWA sources\nInvoices, leases, valuations"]
+    Cases["Synthetic RWA cases\nagent-backend/data/rwa-cases.json"]
+  end
+
+  subgraph AI["AI agent layer"]
+    Collector["DataCollector"]
+    Risk["RiskEngine\nconfidence score 0-100"]
+    Gate{"Decision Gate\npremium band 50-70"}
+    Evidence["Evidence hash\nprivacy-preserving provenance"]
+  end
+
+  subgraph Pay["Payment layer"]
+    X402["x402 Client"]
+    Oracle["Paid Evidence Oracle\nHTTP 402 challenge"]
+    Facilitator["CSPR.cloud x402 facilitator\nprepared live path"]
+  end
+
+  subgraph Chain["Casper Testnet layer"]
+    Publisher["ChainPublisher\npublish_data deploy JSON"]
+    Contract["Odra RwaOracle contract"]
+    Feed["Oracle identity, data feed,\nreputation, evidence_hash"]
+    Explorer["CSPR.live / CSPR.cloud verification"]
+  end
+
+  RWA --> Cases --> Collector --> Risk --> Gate
+  Risk --> Evidence
+  Gate -->|confidence > 70| Publisher
+  Gate -->|confidence 50-70| X402 --> Oracle
+  Oracle -->|PAYMENT-REQUIRED| X402
+  X402 -->|PAYMENT-SIGNATURE| Oracle
+  Oracle -->|premium risk evidence| Risk
+  Oracle -. live settlement when credentials exist .-> Facilitator
+  Publisher --> Contract --> Feed --> Explorer
+
+  classDef data fill:#dbeafe,stroke:#2563eb,color:#0f172a
+  classDef ai fill:#dcfce7,stroke:#16a34a,color:#0f172a
+  classDef pay fill:#ffedd5,stroke:#ea580c,color:#0f172a
+  classDef chain fill:#ede9fe,stroke:#7c3aed,color:#0f172a
+
+  class RWA,Cases data
+  class Collector,Risk,Gate,Evidence ai
+  class X402,Oracle,Facilitator pay
+  class Publisher,Contract,Feed,Explorer chain

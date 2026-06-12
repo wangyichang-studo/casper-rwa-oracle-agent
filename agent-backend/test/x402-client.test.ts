@@ -26,6 +26,8 @@ const config: AgentConfig = {
     asset: "9824d60dc3a5c44a20b9fd260a412437933835b52fc683d8ae36e4ec2114843e",
     payTo: "009e5669b070545e2b32bc66363b9d3d4390fca56bf52a05f1411b7fa18ca311c7",
     maxTimeoutSeconds: 900,
+    premiumEvidenceMinConfidence: 50,
+    premiumEvidenceMaxConfidence: 70,
   },
 };
 
