@@ -6,7 +6,7 @@
 - **Track**: Casper Innovation Track
 - **GitHub Link**: https://github.com/wangyichang-studo/casper-rwa-oracle-agent
 - **GitHub Release**: https://github.com/wangyichang-studo/casper-rwa-oracle-agent/releases/tag/v0.1.0-buildathon-final
-- **Demo Video**: https://youtu.be/dlEN2rdP9WU
+- **Demo Video**: https://youtu.be/PKxla50K31s
 - **DoraHacks BUIDL**: https://dorahacks.io/buidl/44468
 
 ## Short Description

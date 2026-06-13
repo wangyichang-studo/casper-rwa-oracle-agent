@@ -14,7 +14,7 @@ Status timestamp: 2026-06-13 12:30 CST.
 | Transaction-generating on-chain component | ✅ Odra tests, WASM build, and livenet deploy binary check pass | ✅ contract [hash-8c5d2f16c0a552f95e92ab9a5efcac562dca17abb05db9359bfda270e3659cd8](https://testnet.cspr.live/contract-package/hash-8c5d2f16c0a552f95e92ab9a5efcac562dca17abb05db9359bfda270e3659cd8), deploy [dd62fd512ad9f95b4a6522316208d9be890614c31df20d1f5d4aa969daae251b](https://testnet.cspr.live/deploy/dd62fd512ad9f95b4a6522316208d9be890614c31df20d1f5d4aa969daae251b) | Preserve deploy logs for final submission evidence. |
 | x402 paid evidence flow | ✅ Mock/reference, local HTTP mode, and demo evidence capture pass | ✅ Mock/reference mode is demo-ready | Optional: configure live facilitator credentials before recording. |
 | CSPR.trade MCP smoke check | ✅ Graceful placeholder command ready | ✅ Non-blocking enrichment path documented | Optional: configure MCP bridge and rerun `npm run mcp:check`. |
-| Public demo video | ✅ Script ready | ✅ Public video: [link](https://youtu.be/dlEN2rdP9WU) | Keep the video URL public through judging. |
+| Public demo video | ✅ Script ready | ✅ Public video: [link](https://youtu.be/PKxla50K31s) | Keep the video URL public through judging. |
 | GitHub Release package | ✅ Source archive, manifest, and MP4 fallback generated | ✅ Release: [v0.1.0-buildathon-final](https://github.com/wangyichang-studo/casper-rwa-oracle-agent/releases/tag/v0.1.0-buildathon-final) | Use the release as the immutable judge handoff package. |
 | DoraHacks BUIDL page | ✅ Submission copy and evidence prepared | ✅ Public BUIDL: [Casper RWA Oracle Agent](https://dorahacks.io/buidl/44468) | DoraHacks edits require account login. |
 

@@ -60,7 +60,7 @@ The agent autonomously triages RWA cases, pays for premium evidence only when ex
 
 ## Demo Video Link
 
-[Public demo video](https://youtu.be/dlEN2rdP9WU)
+[Public demo video](https://youtu.be/PKxla50K31s)
 
 ## Testnet Contract Evidence
 

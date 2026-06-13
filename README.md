@@ -121,7 +121,7 @@ make competition-assets
 - Network: `casper-test`
 - Contract package hash: `hash-8c5d2f16c0a552f95e92ab9a5efcac562dca17abb05db9359bfda270e3659cd8`
 - Public repository URL: [https://github.com/wangyichang-studo/casper-rwa-oracle-agent](https://github.com/wangyichang-studo/casper-rwa-oracle-agent)
-- Public video URL: [Demo video](https://youtu.be/dlEN2rdP9WU)
+- Public video URL: [Demo video](https://youtu.be/PKxla50K31s)
 - Contract explorer: [CSPR.live contract package](https://testnet.cspr.live/contract-package/hash-8c5d2f16c0a552f95e92ab9a5efcac562dca17abb05db9359bfda270e3659cd8)
 - Sample deploy: [CSPR.live deploy](https://testnet.cspr.live/deploy/dd62fd512ad9f95b4a6522316208d9be890614c31df20d1f5d4aa969daae251b)
 
