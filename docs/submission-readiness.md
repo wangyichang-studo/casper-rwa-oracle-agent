@@ -1,6 +1,6 @@
 # Submission Readiness
 
-Status timestamp: 2026-06-08 12:45 CST.
+Status timestamp: 2026-06-13 12:30 CST.
 
 ## Required DoraHacks Artifacts
 
@@ -15,6 +15,8 @@ Status timestamp: 2026-06-08 12:45 CST.
 | x402 paid evidence flow | ✅ Mock/reference, local HTTP mode, and demo evidence capture pass | ✅ Mock/reference mode is demo-ready | Optional: configure live facilitator credentials before recording. |
 | CSPR.trade MCP smoke check | ✅ Graceful placeholder command ready | ✅ Non-blocking enrichment path documented | Optional: configure MCP bridge and rerun `npm run mcp:check`. |
 | Public demo video | ✅ Script ready | ✅ Public video: [link](https://youtu.be/dlEN2rdP9WU) | Keep the video URL public through judging. |
+| GitHub Release package | ✅ Source archive, manifest, and MP4 fallback generated | ✅ Release: [v0.1.0-buildathon-final](https://github.com/wangyichang-studo/casper-rwa-oracle-agent/releases/tag/v0.1.0-buildathon-final) | Use the release as the immutable judge handoff package. |
+| DoraHacks BUIDL page | ✅ Submission copy and evidence prepared | ✅ Public BUIDL: [Casper RWA Oracle Agent](https://dorahacks.io/buidl/44468) | DoraHacks edits require account login. |
 
 ## Verified Testnet Account
 
@@ -31,8 +33,8 @@ Status timestamp: 2026-06-08 12:45 CST.
 - ✅ `.env.example` files describe required local variables.
 - ✅ No local `.env`, PEM, or key file is present in the working tree.
 - ✅ Raw RWA/KYC files are not stored in the repo.
-- ✅ Manus approvals are saved through Checkpoint 07.
-- ✅ Checkpoint 09 competition-polish package is prepared in `manus_outbox/` without blocking on Checkpoint 08 feedback.
+- ✅ Manus approvals are saved through Checkpoint 09.
+- ✅ Checkpoint 09 competition-polish feedback passed at 9.5/10 with no P0/P1 issues.
 
 ## Project Directory Tree
 
